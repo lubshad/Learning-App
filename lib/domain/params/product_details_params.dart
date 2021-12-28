@@ -1,14 +1,14 @@
 
 
 class ProductDetailsParams {
-  final String stockId;
+  final String courseId;
 
-  ProductDetailsParams({required this.stockId});
+  ProductDetailsParams({required this.courseId});
 
 
   Map<String, dynamic> toMap() {
     return {
-      'stock_id': stockId,
+      'id': courseId,
     };
   }
 }

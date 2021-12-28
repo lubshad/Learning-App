@@ -1,6 +1,6 @@
 import 'package:learning_app/l10n/localization.dart';
 import 'package:learning_app/presentation/screens/cart_screen/cart_screen_controller.dart';
-import 'package:learning_app/presentation/screens/product_details_screen/components/price_ranges.dart';
+import 'package:learning_app/presentation/screens/course_details_screen/components/price_ranges.dart';
 import 'package:learning_app/presentation/theme/theme.dart';
 import 'package:learning_app/presentation/widgets/default_button.dart';
 import 'package:learning_app/presentation/widgets/quantity_change_buttons.dart';

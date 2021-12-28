@@ -32,10 +32,6 @@ class MenuItem extends StatelessWidget {
               onTap: () => Get.toNamed(RouteList.wishList),
             ),
             MenuListItems(
-              text: AppLocalizations.of(context)!.kyc_details,
-              onTap: () => Get.toNamed(RouteList.kycDetailsScreen),
-            ),
-            MenuListItems(
               text: AppLocalizations.of(context)!.logout,
               onTap: () {
                 Get.find<LogoutUser>()(NoParams());

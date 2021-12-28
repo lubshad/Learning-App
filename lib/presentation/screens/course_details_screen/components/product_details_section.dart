@@ -1,9 +1,10 @@
 import 'package:learning_app/l10n/localization.dart';
-import 'package:learning_app/presentation/screens/product_details_screen/components/price_ranges.dart';
-import 'package:learning_app/presentation/screens/product_details_screen/components/variant_selection.dart';
-import 'package:learning_app/presentation/screens/product_details_screen/product_details_controller.dart';
+import 'package:learning_app/presentation/screens/course_details_screen/components/price_ranges.dart';
+import 'package:learning_app/presentation/screens/course_details_screen/components/variant_selection.dart';
 import 'package:learning_app/presentation/theme/theme.dart';
 import 'package:flutter/material.dart';
+
+import '../course_details_controller.dart';
 
 class ProductDetailsSections extends StatelessWidget {
   const ProductDetailsSections({

@@ -1,8 +1,7 @@
-import 'package:learning_app/data/core/api_constants.dart';
-import 'package:learning_app/domain/entities/banner_entity.dart';
-import 'package:learning_app/presentation/theme/theme.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:learning_app/data/core/api_constants.dart';
+import 'package:learning_app/domain/entities/banner_entity.dart';
 
 class HomeBannerItem extends StatelessWidget {
   const HomeBannerItem({

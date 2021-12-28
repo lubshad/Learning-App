@@ -3,6 +3,7 @@ class RouteList {
 
   static const String initial = '/';
   static const String authWrapper = "/auth_wrapper";
+  static const String courseDetailsScreen = "/cource_details_screen";
   static const String register = "/register";
   static const String login = "/login";
   static const String myOrders = "/my_orders";

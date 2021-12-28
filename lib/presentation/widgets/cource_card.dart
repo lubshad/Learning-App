@@ -1,18 +1,17 @@
-import 'package:learning_app/data/core/api_constants.dart';
-import 'package:learning_app/data/models/home_response_model.dart';
-import 'package:learning_app/l10n/localization.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:html/parser.dart' show parse;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:html/parser.dart' show parse;
+import 'package:learning_app/data/core/api_constants.dart';
+import 'package:learning_app/data/models/home_response_model.dart';
 import 'package:learning_app/presentation/route/route_constants.dart';
 import 'package:learning_app/presentation/theme/theme.dart';
 import 'package:learning_app/presentation/widgets/default_button.dart';
 
-class CourceCard extends StatelessWidget {
-  const CourceCard({Key? key, required this.cource}) : super(key: key);
+class CourseCard extends StatelessWidget {
+  const CourseCard({Key? key, required this.cource}) : super(key: key);
 
-  final Cource cource;
+  final Course cource;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +27,7 @@ class CourceCard extends StatelessWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(defaultPadding * .5),
           onTap: () {
-            Get.toNamed(RouteList.productDetailsScreen, arguments: cource);
+            Get.toNamed(RouteList.courseDetailsScreen, arguments: cource);
           },
           child: Column(
             children: [
@@ -56,7 +55,7 @@ class CourceCard extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Text("4.7",
+                        Text(cource.ratingCount.toString(),
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyText1!
@@ -65,9 +64,12 @@ class CourceCard extends StatelessWidget {
                         ...List.generate(
                             5,
                             (index) => RatingIcon(
-                                rating: 3.7, index: index.toDouble())),
+                                rating: cource.ratingCount.toDouble(),
+                                index: index.toDouble())),
                         defaultSpacerHorizontalSmall,
-                        Text("(43,200)"),
+                        Text(cource.rating == null
+                            ? "(43,200)"
+                            : cource.rating.toString()),
                       ],
                     ),
                     defaultSpacerSmall,
@@ -75,6 +77,10 @@ class CourceCard extends StatelessWidget {
                       cource.title,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText1!
+                          .copyWith(fontWeight: FontWeight.bold),
                     ),
                     defaultSpacerSmall,
                     Text(
@@ -83,8 +89,13 @@ class CourceCard extends StatelessWidget {
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    const Divider(),
-                    Text(cource.currencyCode + " " + cource.price.toString()),
+                    const Divider(
+                      height: defaultPadding,
+                    ),
+                    Text(
+                      cource.currencyCode + " " + cource.price.toString(),
+                      style: Theme.of(context).textTheme.bodyText1BlueBold(),
+                    ),
                     defaultSpacerSmall,
                     DefaultButton(
                         height: defaultPadding * 2,

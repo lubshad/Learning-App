@@ -14,7 +14,7 @@ import 'package:learning_app/utils/firebase_messaging.dart';
 
 class HomeScreenController extends ChangeNotifier {
   List<CategoryEntity> categories = [];
-  List<TitleWithCourcesEntity> titleWithCources = [];
+  List<TitleWithCoursesEntity> titleWithCourses = [];
   List<BannerEntity> bannerItems = [];
 
   GetHomeData getHomeData = Get.find();
@@ -52,9 +52,9 @@ class HomeScreenController extends ChangeNotifier {
     bannerItems.clear();
     bannerItems.add(dataModel.banner);
     // categories = dataModel.data!.categories!;
-    titleWithCources = dataModel.horizontalSlider
+    titleWithCourses = dataModel.horizontalSlider
         .where((element) => element != null)
-        .map((e) => TitleWithCourcesEntity(
+        .map((e) => TitleWithCoursesEntity(
               title: e!.title,
               cources: e.data,
             ))

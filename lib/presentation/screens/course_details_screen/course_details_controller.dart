@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:learning_app/data/models/home_response_model.dart';
 import 'package:learning_app/data/models/product_details_response_model.dart';
 import 'package:learning_app/domain/entities/app_error.dart';
-import 'package:learning_app/domain/entities/product_entity.dart';
 import 'package:learning_app/domain/entities/variant_entity.dart';
-import 'package:learning_app/domain/params/add_to_cart_params.dart';
 import 'package:learning_app/domain/params/product_details_params.dart';
 import 'package:learning_app/domain/usecases/add_to_cart.dart';
 import 'package:learning_app/domain/usecases/add_to_wishlist.dart';
@@ -23,7 +22,7 @@ class ProductDetailsController extends ChangeNotifier {
   late VariantEntity variantEntity;
   TextEditingController quantityController = TextEditingController(text: "1");
 
-  ProductEntity productEntity = Get.arguments;
+  Course course = Get.arguments;
   GetProductDetails getProductDetails = Get.find();
 
   AddToWishlist addToWishlist = Get.find();
@@ -53,26 +52,26 @@ class ProductDetailsController extends ChangeNotifier {
   }
 
   addProductToWishlist() async {
-    if (!validateWishlist()) {
-      CartWishlistParams addToCartParams = CartWishlistParams(
-          stockId: selectedVariant.productEntity.stockId!,
-          vendorID: selectedVariant.productEntity.vendorId!,
-          quantity: quantityController.text);
-      final response = await addToWishlist(addToCartParams);
-      response.fold((l) => l.handleError(), (r) {
-        if (r["status"] == 1) {
-          isWishlistProduct = true;
-        }
-        showMessage(r["message"]);
-      });
-    }
-    notifyListeners();
+    // if (!validateWishlist()) {
+    //   CartWishlistParams addToCartParams = CartWishlistParams(
+    //       stockId: selectedVariant.course.stockId!,
+    //       vendorID: selectedVariant.course.vendorId!,
+    //       quantity: quantityController.text);
+    //   final response = await addToWishlist(addToCartParams);
+    //   response.fold((l) => l.handleError(), (r) {
+    //     if (r["status"] == 1) {
+    //       isWishlistProduct = true;
+    //     }
+    //     showMessage(r["message"]);
+    //   });
+    // }
+    // notifyListeners();
   }
 
   // removeProductFromWishlist() async {
   //   CartWishlistParams addToCartParams = CartWishlistParams(
-  //       stockId: selectedVariant.productEntity.stockId!,
-  //       vendorID: selectedVariant.productEntity.vendorId!,
+  //       stockId: selectedVariant.course.stockId!,
+  //       vendorID: selectedVariant.course.vendorId!,
   //       quantity: quantityController.text);
   //   final response = await removeFromWishlist(addToCartParams);
   //   response.fold((l) => l.handleError(), (r) {
@@ -100,9 +99,8 @@ class ProductDetailsController extends ChangeNotifier {
   getData() async {
     appError = null;
     makeLoading();
-
     ProductDetailsParams productDetailsParams =
-        ProductDetailsParams(stockId: productEntity.stockId!);
+        ProductDetailsParams(courseId: course.id.toString());
     final response = await getProductDetails(productDetailsParams);
     response.fold((l) => appError = l, (r) {
       setData(r);
@@ -111,18 +109,18 @@ class ProductDetailsController extends ChangeNotifier {
   }
 
   void setData(ProductDetailsResponseModel r) {
-    String variantName = r.data!.variant1Name;
-    List<VariantProduct> variantProducts = r.data!.variant1S
-        .map((e) => VariantProduct(
-            value: e.variant1Name,
-            productEntity: e.vendors[0],
-            priceRanges: e.vendors[0].priceRanges))
-        .toList();
-    variantEntity =
-        VariantEntity(name: variantName, variantProducts: variantProducts);
-    selectedVariant = variantEntity.variantProducts[0];
-    images = r.data!.productImages.map((e) => e.image).toList();
-    updateCartWishlistStatus();
+    // String variantName = r.data!.variant1Name;
+    // List<VariantProduct> variantProducts = r.data!.variant1S
+    //     .map((e) => VariantProduct(
+    //         value: e.variant1Name,
+    //         course: e.vendors[0],
+    //         priceRanges: e.vendors[0].priceRanges))
+    //     .toList();
+    // variantEntity =
+    //     VariantEntity(name: variantName, variantProducts: variantProducts);
+    // selectedVariant = variantEntity.variantProducts[0];
+    // images = r.data!.productImages.map((e) => e.image).toList();
+    // updateCartWishlistStatus();
   }
 
   void changeVariant(VariantProduct e) {
@@ -132,28 +130,28 @@ class ProductDetailsController extends ChangeNotifier {
   }
 
   updateCartWishlistStatus() {
-    isWishlistProduct = selectedVariant.productEntity.wishlistStatus != "0";
-    isCartProduct = selectedVariant.productEntity.userQty != "0";
-    quantityController.text = selectedVariant.productEntity.userQty! == "0"
-        ? "1"
-        : selectedVariant.productEntity.userQty!;
+    // isWishlistProduct = selectedVariant.course.wishlistStatus != "0";
+    // isCartProduct = selectedVariant.course.userQty != "0";
+    // quantityController.text = selectedVariant.course.userQty! == "0"
+    //     ? "1"
+    //     : selectedVariant.course.userQty!;
   }
 
   void addProductToCart() async {
-    makeButtonLoading();
-    CartWishlistParams addToCartParams = CartWishlistParams(
-        stockId: selectedVariant.productEntity.stockId,
-        vendorID: selectedVariant.productEntity.vendorId,
-        quantity: quantityController.text);
-    final response = await addtoCart(addToCartParams);
-    response.fold((l) => l.handleError(), (r) {
-      if (r["status"] == 1) {
-        isCartProduct = true;
-        cartScreenController.getData();
-      }
-      showMessage(r["message"]);
-    });
-    makeButtonNotLoading();
+    // makeButtonLoading();
+    // CartWishlistParams addToCartParams = CartWishlistParams(
+    //     stockId: selectedVariant.course.stockId,
+    //     vendorID: selectedVariant.course.vendorId,
+    //     quantity: quantityController.text);
+    // final response = await addtoCart(addToCartParams);
+    // response.fold((l) => l.handleError(), (r) {
+    //   if (r["status"] == 1) {
+    //     isCartProduct = true;
+    //     cartScreenController.getData();
+    //   }
+    //   showMessage(r["message"]);
+    // });
+    // makeButtonNotLoading();
   }
 
   void decreaseQuantity() {
@@ -211,7 +209,7 @@ class ProductDetailsController extends ChangeNotifier {
 // VariantEntity variantItem = VariantEntity(name: "Size", variantProducts: [
 //   VariantProduct(
 //       priceRanges: priceRangeSmallList,
-//       productEntity: const ProductEntity(
+//       course: const ProductEntity(
 //           imageUrl:
 //               "https://s3-alpha-sig.figma.com/img/9ac9/c757/db51fc6098f44701d03d4178fcbdde72?Expires=1635120000&Signature=dmJrne0DE5UtXGwbgPZ6PaFanEA4dLNWAVdTvdrIbo58lh4WwOMkHS8uxtm5~u0tcaU6swdLu4WtP5NJVPGHxDjbAF0d6i6BVjs44X3IunLYKTDJhwmENq~Q6goQYhz2rxyb5KLRSHoChY2WvohdU0DJ69g1KfCgis~sWed5CZmkjAPOS3~kcHI5Ea2Vmy4-FQirRKDV-4U~ae9FNmmwermDTkkE9NJ~ERVaiTXt6s1t8ZgHm48Uxh4W7AV53of-yFCxBTr5FfSRR2m9nef2GEUMWWYROLKnqKjFK8epfkquRcw76~Bpry2cyop3EB3IwbqGW7g2PVA-jAVHOsOZOQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
 //           name: 'Amul Chocolate Box small',
@@ -219,7 +217,7 @@ class ProductDetailsController extends ChangeNotifier {
 //       value: 'Small'),
 //   VariantProduct(
 //       priceRanges: priceRangeMediumList,
-//       productEntity: const ProductEntity(
+//       course: const ProductEntity(
 //           imageUrl:
 //               "https://s3-alpha-sig.figma.com/img/9ac9/c757/db51fc6098f44701d03d4178fcbdde72?Expires=1635120000&Signature=dmJrne0DE5UtXGwbgPZ6PaFanEA4dLNWAVdTvdrIbo58lh4WwOMkHS8uxtm5~u0tcaU6swdLu4WtP5NJVPGHxDjbAF0d6i6BVjs44X3IunLYKTDJhwmENq~Q6goQYhz2rxyb5KLRSHoChY2WvohdU0DJ69g1KfCgis~sWed5CZmkjAPOS3~kcHI5Ea2Vmy4-FQirRKDV-4U~ae9FNmmwermDTkkE9NJ~ERVaiTXt6s1t8ZgHm48Uxh4W7AV53of-yFCxBTr5FfSRR2m9nef2GEUMWWYROLKnqKjFK8epfkquRcw76~Bpry2cyop3EB3IwbqGW7g2PVA-jAVHOsOZOQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
 //           name: 'Amul Chocolate Box medium',
@@ -227,49 +225,49 @@ class ProductDetailsController extends ChangeNotifier {
 //       value: 'Medium'),
 //   VariantProduct(
 //       priceRanges: priceRangeLargeList,
-//       productEntity: const ProductEntity(
+//       course: const ProductEntity(
 //           imageUrl:
 //               "https://s3-alpha-sig.figma.com/img/9ac9/c757/db51fc6098f44701d03d4178fcbdde72?Expires=1635120000&Signature=dmJrne0DE5UtXGwbgPZ6PaFanEA4dLNWAVdTvdrIbo58lh4WwOMkHS8uxtm5~u0tcaU6swdLu4WtP5NJVPGHxDjbAF0d6i6BVjs44X3IunLYKTDJhwmENq~Q6goQYhz2rxyb5KLRSHoChY2WvohdU0DJ69g1KfCgis~sWed5CZmkjAPOS3~kcHI5Ea2Vmy4-FQirRKDV-4U~ae9FNmmwermDTkkE9NJ~ERVaiTXt6s1t8ZgHm48Uxh4W7AV53of-yFCxBTr5FfSRR2m9nef2GEUMWWYROLKnqKjFK8epfkquRcw76~Bpry2cyop3EB3IwbqGW7g2PVA-jAVHOsOZOQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
 //           name: 'Amul Chocolate Box large',
 //           price: "35.00"),
 //       value: 'large'),
   // VariantProduct(
-  //     productEntity: ProductEntity(
+  //     course: ProductEntity(
   //         imageUrl:
   //             "https://s3-alpha-sig.figma.com/img/9ac9/c757/db51fc6098f44701d03d4178fcbdde72?Expires=1635120000&Signature=dmJrne0DE5UtXGwbgPZ6PaFanEA4dLNWAVdTvdrIbo58lh4WwOMkHS8uxtm5~u0tcaU6swdLu4WtP5NJVPGHxDjbAF0d6i6BVjs44X3IunLYKTDJhwmENq~Q6goQYhz2rxyb5KLRSHoChY2WvohdU0DJ69g1KfCgis~sWed5CZmkjAPOS3~kcHI5Ea2Vmy4-FQirRKDV-4U~ae9FNmmwermDTkkE9NJ~ERVaiTXt6s1t8ZgHm48Uxh4W7AV53of-yFCxBTr5FfSRR2m9nef2GEUMWWYROLKnqKjFK8epfkquRcw76~Bpry2cyop3EB3IwbqGW7g2PVA-jAVHOsOZOQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
   //         name: 'Amul Chocolate Box small',
   //         price: '22'),
   //     value: 'Small'),
   // VariantProduct(
-  //     productEntity: ProductEntity(
+  //     course: ProductEntity(
   //         imageUrl:
   //             "https://s3-alpha-sig.figma.com/img/9ac9/c757/db51fc6098f44701d03d4178fcbdde72?Expires=1635120000&Signature=dmJrne0DE5UtXGwbgPZ6PaFanEA4dLNWAVdTvdrIbo58lh4WwOMkHS8uxtm5~u0tcaU6swdLu4WtP5NJVPGHxDjbAF0d6i6BVjs44X3IunLYKTDJhwmENq~Q6goQYhz2rxyb5KLRSHoChY2WvohdU0DJ69g1KfCgis~sWed5CZmkjAPOS3~kcHI5Ea2Vmy4-FQirRKDV-4U~ae9FNmmwermDTkkE9NJ~ERVaiTXt6s1t8ZgHm48Uxh4W7AV53of-yFCxBTr5FfSRR2m9nef2GEUMWWYROLKnqKjFK8epfkquRcw76~Bpry2cyop3EB3IwbqGW7g2PVA-jAVHOsOZOQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
   //         name: 'Amul Chocolate Box medium',
   //         price: '30'),
   //     value: 'Medium'),
   // VariantProduct(
-  //     productEntity: ProductEntity(
+  //     course: ProductEntity(
   //         imageUrl:
   //             "https://s3-alpha-sig.figma.com/img/9ac9/c757/db51fc6098f44701d03d4178fcbdde72?Expires=1635120000&Signature=dmJrne0DE5UtXGwbgPZ6PaFanEA4dLNWAVdTvdrIbo58lh4WwOMkHS8uxtm5~u0tcaU6swdLu4WtP5NJVPGHxDjbAF0d6i6BVjs44X3IunLYKTDJhwmENq~Q6goQYhz2rxyb5KLRSHoChY2WvohdU0DJ69g1KfCgis~sWed5CZmkjAPOS3~kcHI5Ea2Vmy4-FQirRKDV-4U~ae9FNmmwermDTkkE9NJ~ERVaiTXt6s1t8ZgHm48Uxh4W7AV53of-yFCxBTr5FfSRR2m9nef2GEUMWWYROLKnqKjFK8epfkquRcw76~Bpry2cyop3EB3IwbqGW7g2PVA-jAVHOsOZOQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
   //         name: 'Amul Chocolate Box large',
   //         price: '35'),
   //     value: 'large'),
   // VariantProduct(
-  //     productEntity: ProductEntity(
+  //     course: ProductEntity(
   //         imageUrl:
   //             "https://s3-alpha-sig.figma.com/img/9ac9/c757/db51fc6098f44701d03d4178fcbdde72?Expires=1635120000&Signature=dmJrne0DE5UtXGwbgPZ6PaFanEA4dLNWAVdTvdrIbo58lh4WwOMkHS8uxtm5~u0tcaU6swdLu4WtP5NJVPGHxDjbAF0d6i6BVjs44X3IunLYKTDJhwmENq~Q6goQYhz2rxyb5KLRSHoChY2WvohdU0DJ69g1KfCgis~sWed5CZmkjAPOS3~kcHI5Ea2Vmy4-FQirRKDV-4U~ae9FNmmwermDTkkE9NJ~ERVaiTXt6s1t8ZgHm48Uxh4W7AV53of-yFCxBTr5FfSRR2m9nef2GEUMWWYROLKnqKjFK8epfkquRcw76~Bpry2cyop3EB3IwbqGW7g2PVA-jAVHOsOZOQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
   //         name: 'Amul Chocolate Box small',
   //         price: '22'),
   //     value: 'Small'),
   // VariantProduct(
-  //     productEntity: ProductEntity(
+  //     course: ProductEntity(
   //         imageUrl:
   //             "https://s3-alpha-sig.figma.com/img/9ac9/c757/db51fc6098f44701d03d4178fcbdde72?Expires=1635120000&Signature=dmJrne0DE5UtXGwbgPZ6PaFanEA4dLNWAVdTvdrIbo58lh4WwOMkHS8uxtm5~u0tcaU6swdLu4WtP5NJVPGHxDjbAF0d6i6BVjs44X3IunLYKTDJhwmENq~Q6goQYhz2rxyb5KLRSHoChY2WvohdU0DJ69g1KfCgis~sWed5CZmkjAPOS3~kcHI5Ea2Vmy4-FQirRKDV-4U~ae9FNmmwermDTkkE9NJ~ERVaiTXt6s1t8ZgHm48Uxh4W7AV53of-yFCxBTr5FfSRR2m9nef2GEUMWWYROLKnqKjFK8epfkquRcw76~Bpry2cyop3EB3IwbqGW7g2PVA-jAVHOsOZOQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
   //         name: 'Amul Chocolate Box medium',
   //         price: '30'),
   //     value: 'Medium'),
   // VariantProduct(
-  //     productEntity: ProductEntity(
+  //     course: ProductEntity(
   //         imageUrl:
   //             "https://s3-alpha-sig.figma.com/img/9ac9/c757/db51fc6098f44701d03d4178fcbdde72?Expires=1635120000&Signature=dmJrne0DE5UtXGwbgPZ6PaFanEA4dLNWAVdTvdrIbo58lh4WwOMkHS8uxtm5~u0tcaU6swdLu4WtP5NJVPGHxDjbAF0d6i6BVjs44X3IunLYKTDJhwmENq~Q6goQYhz2rxyb5KLRSHoChY2WvohdU0DJ69g1KfCgis~sWed5CZmkjAPOS3~kcHI5Ea2Vmy4-FQirRKDV-4U~ae9FNmmwermDTkkE9NJ~ERVaiTXt6s1t8ZgHm48Uxh4W7AV53of-yFCxBTr5FfSRR2m9nef2GEUMWWYROLKnqKjFK8epfkquRcw76~Bpry2cyop3EB3IwbqGW7g2PVA-jAVHOsOZOQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
   //         name: 'Amul Chocolate Box large',

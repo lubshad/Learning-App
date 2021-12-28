@@ -38,14 +38,11 @@ class ProductEntity extends Equatable {
   List<Object?> get props => [name, imageUrl, price, stockId];
 }
 
-class TitleWithCourcesEntity extends Equatable {
+class TitleWithCoursesEntity extends Equatable {
   final String title;
-  final List<Cource> cources;
+  final List<Course> cources;
 
-  const TitleWithCourcesEntity({
-    required this.title,
-    required this.cources
-  });
+  const TitleWithCoursesEntity({required this.title, required this.cources});
 
   @override
   List<Object?> get props => [title, cources];

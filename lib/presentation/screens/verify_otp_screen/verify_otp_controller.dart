@@ -1,14 +1,13 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:learning_app/domain/entities/user_entity.dart';
-import 'package:learning_app/domain/params/add_address_params.dart';
 import 'package:learning_app/domain/params/auth_params.dart';
 import 'package:learning_app/domain/params/verify_otp_args.dart';
 import 'package:learning_app/domain/usecases/resend_otp.dart';
 import 'package:learning_app/domain/usecases/verify_otp_login.dart';
 import 'package:learning_app/presentation/route/route_constants.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
 import 'package:learning_app/utils/snackbar_uils.dart';
 
 class VerifyOtpController extends ChangeNotifier {

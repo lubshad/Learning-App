@@ -19,7 +19,7 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: bgLightBlue,
         title: Text(
-          AppLocalizations.of(context)!.profile,
+          AppLocalizations.of(context)!.account,
           style: Theme.of(context).textTheme.headline6,
         ),
       ),

@@ -1,6 +1,6 @@
 import 'package:learning_app/domain/entities/price_range_entity.dart';
-import 'package:learning_app/presentation/screens/product_details_screen/components/price_range_item.dart';
-import 'package:learning_app/presentation/screens/product_details_screen/components/price_range_title.dart';
+import 'package:learning_app/presentation/screens/course_details_screen/components/price_range_item.dart';
+import 'package:learning_app/presentation/screens/course_details_screen/components/price_range_title.dart';
 import 'package:learning_app/presentation/theme/theme.dart';
 import 'package:flutter/material.dart';
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:learning_app/presentation/theme/theme.dart';
 
 class DatePickerWithText extends StatelessWidget {
   const DatePickerWithText({
@@ -25,7 +24,7 @@ class DatePickerWithText extends StatelessWidget {
           onPressed: onPressed,
           child: Text(
             value,
-            style: Theme.of(context).textTheme.bodyText1Blue(),
+            style: Theme.of(context).textTheme.bodyText1,
           ),
         ),
       ],

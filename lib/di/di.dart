@@ -37,6 +37,7 @@ import 'package:learning_app/presentation/screens/add_address_screen/add_address
 import 'package:learning_app/presentation/screens/cart_screen/cart_screen_controller.dart';
 import 'package:learning_app/presentation/screens/category_details_screen/category_details_controller.dart';
 import 'package:learning_app/presentation/screens/checkout_screen/checkout_controller.dart';
+import 'package:learning_app/presentation/screens/course_details_screen/course_details_controller.dart';
 import 'package:learning_app/presentation/screens/edit_address_screen/edit_address_controller.dart';
 import 'package:learning_app/presentation/screens/filter_screen/filter_controller.dart';
 import 'package:learning_app/presentation/screens/home_screen/home_screen_controller.dart';
@@ -46,7 +47,6 @@ import 'package:learning_app/presentation/screens/my_address_screen/my_address_c
 import 'package:learning_app/presentation/screens/my_order_details/my_order_details_controller.dart';
 import 'package:learning_app/presentation/screens/my_orders/my_orders_controller.dart';
 import 'package:learning_app/presentation/screens/offers_products/offers_products_controller.dart';
-import 'package:learning_app/presentation/screens/product_details_screen/product_details_controller.dart';
 import 'package:learning_app/presentation/screens/register_screen/register_screen_controller.dart';
 import 'package:learning_app/presentation/screens/search_screen/search_controller.dart';
 import 'package:learning_app/presentation/screens/upload_kyc_screen/upload_kyc_controller.dart';

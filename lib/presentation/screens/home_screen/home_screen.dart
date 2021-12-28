@@ -1,11 +1,9 @@
-import 'package:learning_app/l10n/localization.dart';
-import 'package:learning_app/presentation/screens/home_screen/components/home_categories.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:learning_app/presentation/screens/home_screen/home_screen_controller.dart';
 import 'package:learning_app/presentation/theme/theme.dart';
 import 'package:learning_app/presentation/widgets/custom_slider_home_page.dart';
 import 'package:learning_app/presentation/widgets/network_resource.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import 'components/title_with_product_carousal.dart';
 
@@ -57,14 +55,15 @@ class HomeScreen extends StatelessWidget {
                     items: homeScreenController.bannerItems,
                   ),
                   defaultSpacer,
+                  defaultSpacer,
                   // HomeCategories(
                   //   categories: homeScreenController.categories,
                   // ),
                   ...List.generate(
-                      homeScreenController.titleWithCources.length,
-                      (index) => TitleWithCourceCarousal(
-                            titleWithCourcesEntity:
-                                homeScreenController.titleWithCources[index],
+                      homeScreenController.titleWithCourses.length,
+                      (index) => TitleWithCourseCarousal(
+                            titleWithCoursesEntity:
+                                homeScreenController.titleWithCourses[index],
                           ))
                 ],
               ),

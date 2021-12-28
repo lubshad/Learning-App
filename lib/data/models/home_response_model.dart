@@ -72,7 +72,7 @@ class Banner extends BannerEntity {
       };
 }
 
-class HorizontalSlider extends TitleWithCourcesEntity {
+class HorizontalSlider extends TitleWithCoursesEntity {
   HorizontalSlider({
     required this.heading,
     required this.nameSlug,
@@ -87,7 +87,7 @@ class HorizontalSlider extends TitleWithCourcesEntity {
   final dynamic typeImage;
   final DateTime createdAt;
   final DateTime updatedAt;
-  final List<Cource> data;
+  final List<Course> data;
 
   factory HorizontalSlider.fromJson(Map<String, dynamic> json) =>
       HorizontalSlider(
@@ -96,7 +96,7 @@ class HorizontalSlider extends TitleWithCourcesEntity {
         typeImage: json["type_image"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
-        data: List<Cource>.from(json["data"].map((x) => Cource.fromJson(x))),
+        data: List<Course>.from(json["data"].map((x) => Course.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -109,8 +109,8 @@ class HorizontalSlider extends TitleWithCourcesEntity {
       };
 }
 
-class Cource {
-  Cource({
+class Course {
+  Course({
     required this.id,
     required this.title,
     required this.description,
@@ -134,7 +134,7 @@ class Cource {
   final dynamic rating;
   final int ratingCount;
 
-  factory Cource.fromJson(Map<String, dynamic> json) => Cource(
+  factory Course.fromJson(Map<String, dynamic> json) => Course(
         id: json["id"],
         title: json["title"],
         description: json["description"],

@@ -1,8 +1,9 @@
 import 'package:learning_app/domain/entities/banner_entity.dart';
-import 'package:learning_app/presentation/screens/product_details_screen/product_details_controller.dart';
 import 'package:learning_app/presentation/theme/theme.dart';
 import 'package:learning_app/presentation/widgets/custom_slider_product_details.dart';
 import 'package:flutter/material.dart';
+
+import '../course_details_controller.dart';
 
 class ProductDetailsAppBar extends StatelessWidget {
   const ProductDetailsAppBar({

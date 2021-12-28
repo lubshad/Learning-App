@@ -3,10 +3,7 @@ import 'package:get/get.dart';
 import 'package:learning_app/data/data_sources/auth_local_data_source.dart';
 import 'package:learning_app/domain/entities/user_entity.dart';
 import 'package:learning_app/presentation/theme/theme.dart';
-import 'package:learning_app/presentation/widgets/app_logo.dart';
 import 'package:learning_app/presentation/widgets/default_button.dart';
-
-import 'components/login_or_register.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({
