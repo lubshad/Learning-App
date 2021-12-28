@@ -1,3 +1,4 @@
+import 'package:learning_app/data/models/home_response_model.dart';
 import 'package:learning_app/domain/entities/price_range_entity.dart';
 import 'package:equatable/equatable.dart';
 
@@ -37,15 +38,15 @@ class ProductEntity extends Equatable {
   List<Object?> get props => [name, imageUrl, price, stockId];
 }
 
-class TitleWithProductsEntity extends Equatable {
+class TitleWithCourcesEntity extends Equatable {
   final String title;
-  final List<ProductEntity> products;
+  final List<Cource> cources;
 
-  const TitleWithProductsEntity({
+  const TitleWithCourcesEntity({
     required this.title,
-    required this.products,
+    required this.cources
   });
 
   @override
-  List<Object?> get props => [title, products];
+  List<Object?> get props => [title, cources];
 }

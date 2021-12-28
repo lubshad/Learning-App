@@ -73,17 +73,8 @@ class RemoteDataSourceImpl extends RemoteDataSource {
 
   @override
   Future<HomeResponseModel> getHomeData(Map<String, dynamic> params) async {
-    final response = await _apiClient.post(ApiConstants.home, params);
-    if (response["status"] == 1) {
-      try {
-        return HomeResponseModel.fromJson(response);
-      } catch (e) {
-        throw Exception();
-      }
-    } else {
-      return HomeResponseModel(
-          status: response["status"], message: response["message"], data: null);
-    }
+    final response = await _apiClient.get(ApiConstants.home);
+    return HomeResponseModel.fromJson(response);
   }
 
   @override

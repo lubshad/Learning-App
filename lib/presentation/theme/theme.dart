@@ -18,9 +18,10 @@ const sliverSpacer = SliverToBoxAdapter(
 //const colours
 const bgLightBlue = Color(0xFFF2F6F9);
 const whiteColor = Colors.white;
-const primaryColor = Color(0xFFff7777);
+const primaryColor = Colors.blue;
 const blackColor = Colors.black;
 const errorColor = Color(0xFFB71C1C);
+const goldColor = Color(0xFFd4af37);
 const successColor = Colors.green;
 const greyColor = Colors.grey;
 const warningColor = Colors.yellow;
@@ -115,8 +116,8 @@ ThemeData themeData(context) {
       platform: TargetPlatform.iOS,
       cardTheme: CardTheme(
         margin: const EdgeInsets.symmetric(
-            horizontal: defaultPadding * .3, vertical: defaultPadding * .3),
-        elevation: defaultPadding * .5,
+            horizontal: defaultPadding * .5, vertical: defaultPadding * .5),
+        elevation: 5,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(defaultPadding * .5)),
         shadowColor: Colors.black38,

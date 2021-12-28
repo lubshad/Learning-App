@@ -124,5 +124,8 @@
     "mrp": "M R P",
     "select_your_region" : "Select your region",
     "region" : "Region",
-    "please_select_your_region" : "Please select your region"
+    "please_select_your_region" : "Please select your region",
+    "exam" : "Exam",
+    "course" : "Course",
+    "account" : "Account"
  }

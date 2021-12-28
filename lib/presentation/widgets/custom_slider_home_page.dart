@@ -45,7 +45,7 @@ class _CustomCarouselHomePageState extends State<CustomCarouselHomePage> {
                     autoPlay: widget.items.length == 1 ? false : true,
                     autoPlayCurve: Curves.ease,
                     autoPlayAnimationDuration: const Duration(seconds: 2),
-                    viewportFraction: .9,
+                    viewportFraction: 1,
                   ),
                   items: widget.items
                       .map((item) => HomeBannerItem(item: item))

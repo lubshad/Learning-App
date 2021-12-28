@@ -26,29 +26,29 @@ class HomeScreen extends StatelessWidget {
           loading: homeScreenController.isLoading,
           retry: homeScreenController.getData,
           child: Scaffold(
-            appBar: AppBar(
-              backgroundColor: bgLightBlue,
-              title: Row(
-                children: [
-                  Image.asset(
-                    "assets/logo_only.png",
-                    width: 40,
-                    fit: BoxFit.contain,
-                  ),
-                  defaultSpacerHorizontalSmall,
-                  Image.asset(
-                    "assets/name.png",
-                    height: 40,
-                    fit: BoxFit.contain,
-                  ),
-                ],
-              ),
-              actions: [
-                TextButton(
-                    onPressed: homeScreenController.changeLocale,
-                    child: Text(AppLocalizations.of(context)!.locale))
-              ],
-            ),
+            // appBar: AppBar(
+            //   backgroundColor: bgLightBlue,
+            //   title: Row(
+            //     children: [
+            //       Image.asset(
+            //         "assets/logo_only.png",
+            //         width: 40,
+            //         fit: BoxFit.contain,
+            //       ),
+            //       defaultSpacerHorizontalSmall,
+            //       Image.asset(
+            //         "assets/name.png",
+            //         height: 40,
+            //         fit: BoxFit.contain,
+            //       ),
+            //     ],
+            //   ),
+            //   actions: [
+            //     TextButton(
+            //         onPressed: homeScreenController.changeLocale,
+            //         child: Text(AppLocalizations.of(context)!.locale))
+            //   ],
+            // ),
             body: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,15 +56,15 @@ class HomeScreen extends StatelessWidget {
                   CustomCarouselHomePage(
                     items: homeScreenController.bannerItems,
                   ),
-                  defaultSpacerSmall,
-                  HomeCategories(
-                    categories: homeScreenController.categories,
-                  ),
+                  defaultSpacer,
+                  // HomeCategories(
+                  //   categories: homeScreenController.categories,
+                  // ),
                   ...List.generate(
-                      homeScreenController.titleWithProducts.length,
-                      (index) => TitleWithProductCarousal(
-                            titleWithProductsEntity:
-                                homeScreenController.titleWithProducts[index],
+                      homeScreenController.titleWithCources.length,
+                      (index) => TitleWithCourceCarousal(
+                            titleWithCourcesEntity:
+                                homeScreenController.titleWithCources[index],
                           ))
                 ],
               ),

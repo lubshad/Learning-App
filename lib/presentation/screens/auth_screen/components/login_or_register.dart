@@ -15,7 +15,7 @@ class LoginOrRegister extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        DefaultButton(
+        DefaultButton(  
           text: AppLocalizations.of(context)!.login,
           onPressed: () {
             Navigator.of(context).pushNamed(RouteList.login);

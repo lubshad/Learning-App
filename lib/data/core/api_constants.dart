@@ -1,12 +1,12 @@
 class ApiConstants {
-  static const String baseUrl = defaultWebUrl + "api/v1/";
+  static const String baseUrl = defaultWebUrl + "api/";
   static const String termsAndCondition =
       "https://subaiemarket.com/landing/terms.html";
-  static const String defaultWebUrl = "https://subaiemarket.com/qa/";
+  static const String defaultWebUrl = "http://learningapp.e8demo.com/";
   static const String playStoreUrl =
       "https://play.google.com/store/apps/details?id=com.primalcodes.learning_app";
   static const String appStoreUrl = "";
-  static const String home = "home-main";
+  static const String home = "home_page";
   static const String subCategories = "subcategories";
   static const String resendOpt = "resend-otp";
   static const String getLinkType = "get-link-type";

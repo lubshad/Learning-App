@@ -19,7 +19,7 @@ class AuthWrapper extends StatelessWidget {
     return AnimatedBuilder(
       animation: authController,
       builder: (context, child) => DefaultPageTransition(
-        child: authController.user != null
+        child: authController.user == null
             ? const AuthScreen()
             // : const AddAddressScreen(),
             : const NavigationScreen(),

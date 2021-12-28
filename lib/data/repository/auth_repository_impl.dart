@@ -1,12 +1,12 @@
 import 'dart:io';
 
-import 'package:learning_app/data/models/verify_otp_response.dart';
+import 'package:dartz/dartz.dart';
 import 'package:get/get_connect/http/src/exceptions/exceptions.dart';
 import 'package:learning_app/data/data_sources/auth_local_data_source.dart';
 import 'package:learning_app/data/data_sources/auth_remote_data_source.dart';
-import 'package:learning_app/domain/entities/user_entity.dart';
+import 'package:learning_app/data/models/verify_otp_response.dart';
 import 'package:learning_app/domain/entities/app_error.dart';
-import 'package:dartz/dartz.dart';
+import 'package:learning_app/domain/entities/user_entity.dart';
 import 'package:learning_app/domain/repository/auth_repository.dart';
 
 class AuthenticationRepositoryImpl implements AuthenticationRepository {
@@ -71,11 +71,11 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
       final response =
           await _authenticationRemoteDataSource.verifyOtpLogin(params);
       UserEntity? user = response.data;
-      if (user != null &&
-          RegistrationStatus.values[user.registrationStatus] ==
-              RegistrationStatus.verified) {
-        _authenticationLocalDataSource.saveUser(user);
-      }
+      // if (user != null &&
+      //     RegistrationStatus.values[user.registrationStatus] ==
+      //         RegistrationStatus.verified) {
+      //   _authenticationLocalDataSource.saveUser(user);
+      // }
       return Right(response);
     } on SocketException {
       return Left(AppError(AppErrorType.network));
@@ -108,11 +108,11 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
       final response =
           await _authenticationRemoteDataSource.verifyOtpRegistration(params);
       UserEntity? user = response.data;
-      if (user != null &&
-          user.registrationStatus as RegistrationStatus ==
-              RegistrationStatus.verified) {
-        _authenticationLocalDataSource.saveUser(user);
-      }
+      // if (user != null &&
+      //     user.registrationStatus as RegistrationStatus ==
+      //         RegistrationStatus.verified) {
+      //   _authenticationLocalDataSource.saveUser(user);
+      // }
       return Right(response);
     } on SocketException {
       return Left(AppError(AppErrorType.network));

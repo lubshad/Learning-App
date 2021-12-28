@@ -51,7 +51,6 @@ class Data extends UserEntity {
       required this.rewardPoints,
       required this.registrationStatus})
       : super(
-            registrationStatus: registrationStatus,
             userId: customerId,
             phone: customerPhone,
             sessionId: sessionValue,

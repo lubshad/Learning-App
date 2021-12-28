@@ -1,13 +1,8 @@
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:learning_app/presentation/screens/search_screen/components/custom_search_deligate.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:learning_app/presentation/core/navigation_screen/screens.dart';
-import 'package:learning_app/presentation/screens/search_screen/search_controller.dart';
-import 'package:learning_app/presentation/theme/theme.dart';
 import 'package:learning_app/presentation/widgets/default_page_transition.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:learning_app/utils/debug_utils.dart';
 
 import 'navigation_screen_controller.dart';
 
@@ -30,66 +25,73 @@ class NavigationScreen extends StatelessWidget {
           bottomNavigationBar: BottomNavigationBar(
             items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  'assets/svgs/ic_menu.svg',
-                  width: defaultPadding,
-                  height: defaultPadding,
-                  color: navigationScreenController.currentScreen.index == 0
-                      ? primaryColor
-                      : greyColor,
-                ),
-                // icon: const Icon(Icons.home),
+                // icon: SvgPicture.asset(
+                //   'assets/svgs/ic_menu.svg',
+                //   width: defaultPadding,
+                //   height: defaultPadding,
+                //   color: navigationScreenController.currentScreen.index == 0
+                //       ? primaryColor
+                //       : greyColor,
+                // ),
+                icon: const Icon(Icons.home),
                 label: AppLocalizations.of(context)!.home,
               ),
               BottomNavigationBarItem(
-                // icon: const Icon(Icons.search),
-                icon: SvgPicture.asset(
-                  'assets/svgs/ic_search.svg',
-                  width: defaultPadding,
-                  height: defaultPadding,
-                  color: navigationScreenController.currentScreen.index == 1
-                      ? primaryColor
-                      : greyColor,
-                ),
+                icon: const Icon(Icons.play_lesson_outlined),
+                // icon: SvgPicture.asset(
+                //   'assets/svgs/ic_search.svg',
+                //   width: defaultPadding,
+                //   height: defaultPadding,
+                //   color: navigationScreenController.currentScreen.index == 1
+                //       ? primaryColor
+                //       : greyColor,
+                // ),
 
-                label: AppLocalizations.of(context)!.search,
+                label: AppLocalizations.of(context)!.course,
               ),
               BottomNavigationBarItem(
-                // icon: const Icon(Icons.person_outline),
-                icon: SvgPicture.asset(
-                  'assets/svgs/ic_profile.svg',
-                  width: defaultPadding,
-                  height: defaultPadding,
-                  color: navigationScreenController.currentScreen.index == 2
-                      ? primaryColor
-                      : greyColor,
-                ),
+                icon: const Icon(Icons.text_snippet_outlined),
+                // icon: SvgPicture.asset(
+                //   'assets/svgs/ic_search.svg',
+                //   width: defaultPadding,
+                //   height: defaultPadding,
+                //   color: navigationScreenController.currentScreen.index == 1
+                //       ? primaryColor
+                //       : greyColor,
+                // ),
 
-                label: AppLocalizations.of(context)!.profile,
+                label: AppLocalizations.of(context)!.exam,
               ),
               BottomNavigationBarItem(
-                // icon: const Icon(Icons.shopping_cart_outlined),
-                icon: SvgPicture.asset(
-                  'assets/svgs/ic_cart.svg',
-                  width: defaultPadding,
-                  height: defaultPadding,
-                  color: navigationScreenController.currentScreen.index == 3
-                      ? primaryColor
-                      : greyColor,
-                ),
+                icon: const Icon(Icons.shopping_cart_outlined),
+                // icon: SvgPicture.asset(
+                //   'assets/svgs/ic_cart.svg',
+                //   width: defaultPadding,
+                //   height: defaultPadding,
+                //   color: navigationScreenController.currentScreen.index == 3
+                //       ? primaryColor
+                //       : greyColor,
+                // ),
 
                 label: AppLocalizations.of(context)!.cart,
+              ),
+              BottomNavigationBarItem(
+                icon: const Icon(Icons.person_outline),
+                // icon: SvgPicture.asset(
+                //   'assets/svgs/ic_profile.svg',
+                //   width: defaultPadding,
+                //   height: defaultPadding,
+                //   color: navigationScreenController.currentScreen.index == 2
+                //       ? primaryColor
+                //       : greyColor,
+                // ),
+
+                label: AppLocalizations.of(context)!.account,
               ),
             ],
             currentIndex: navigationScreenController.currentScreen.index,
             onTap: (index) {
-              consoleLog(index);
-              if (index == Screens.search.index) {
-                Get.find<SearchController>().filters = [];
-                showSearch(context: context, delegate: CustomSearchDeligate());
-              } else {
-                navigationScreenController.changeScreen(index);
-              }
+              navigationScreenController.changeScreen(index);
             },
           ),
         );

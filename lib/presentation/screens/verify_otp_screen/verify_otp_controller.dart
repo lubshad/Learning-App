@@ -52,22 +52,22 @@ class VerifyOtpController extends ChangeNotifier {
       if (r.status == 1) {
         Get.until((route) => Get.currentRoute == RouteList.initial);
         UserEntity userEntity = r.data!;
-        switch (RegistrationStatus.values[userEntity.registrationStatus]) {
-          case RegistrationStatus.registered:
-            Get.toNamed(RouteList.uploadKycScreen, arguments: userEntity);
-            break;
-          case RegistrationStatus.kycUploaded:
-            AddAddressArguments addAddressArguments = AddAddressArguments(
-                addAddressType: AddAddressType.registration, user: userEntity);
-            Get.toNamed(RouteList.addAddressScreen,
-                arguments: addAddressArguments);
-            break;
-          case RegistrationStatus.addressAdded:
-            Get.toNamed(RouteList.verificationPending);
-            break;
-          case RegistrationStatus.verified:
-            break;
-        }
+        // switch (RegistrationStatus.values[userEntity.registrationStatus]) {
+        //   case RegistrationStatus.registered:
+        //     Get.toNamed(RouteList.uploadKycScreen, arguments: userEntity);
+        //     break;
+        //   case RegistrationStatus.kycUploaded:
+        //     AddAddressArguments addAddressArguments = AddAddressArguments(
+        //         addAddressType: AddAddressType.registration, user: userEntity);
+        //     Get.toNamed(RouteList.addAddressScreen,
+        //         arguments: addAddressArguments);
+        //     break;
+        //   case RegistrationStatus.addressAdded:
+        //     Get.toNamed(RouteList.verificationPending);
+        //     break;
+        //   case RegistrationStatus.verified:
+        //     break;
+        // }
       } else {
         showMessage(r.message);
       }

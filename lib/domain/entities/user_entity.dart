@@ -6,10 +6,8 @@ class UserEntity extends Equatable {
   final String userId;
   final String phone;
   final String imageUrl;
-  final int registrationStatus;
 
   const UserEntity({
-    required this.registrationStatus,
     required this.name,
     required this.sessionId,
     required this.userId,
@@ -19,7 +17,6 @@ class UserEntity extends Equatable {
 
   factory UserEntity.fromJson(Map<String, dynamic> userJson) {
     return UserEntity(
-      registrationStatus: userJson["registration_status"],
       name: userJson["customer_name"],
       sessionId: userJson["session_value"],
       userId: userJson["customer_id"],
@@ -30,7 +27,6 @@ class UserEntity extends Equatable {
   Map<String, dynamic> toJson() {
     Map<String, dynamic> userJson = {};
     userJson.addAll({
-      "registration_status": registrationStatus,
       "customer_name": name,
       "session_value": sessionId,
       "customer_id": userId,

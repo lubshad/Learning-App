@@ -12,7 +12,7 @@ class DefaultButton extends StatelessWidget {
     this.backgroundColor = primaryColor,
     this.textColor = whiteColor,
     this.height = defaultPadding * 2.5,
-    this.borderRadius = defaultPadding * .5,
+    this.borderRadius = defaultPadding * .3,
   }) : super(key: key);
 
   final String text;
