@@ -17,7 +17,7 @@ class NavigationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     NavigationScreenController navigationScreenController = Get.find();
-    navigationScreenController.changeScreen(Screens.cart.index);
+    navigationScreenController.changeScreen(Screens.home.index);
     CartScreenController cartScreenController = Get.find();
     return AnimatedBuilder(
       animation: navigationScreenController,

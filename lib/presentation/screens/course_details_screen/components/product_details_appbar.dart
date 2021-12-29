@@ -4,6 +4,7 @@ import 'package:learning_app/presentation/widgets/custom_slider_product_details.
 import 'package:flutter/material.dart';
 
 import '../course_details_controller.dart';
+import 'trailer.dart';
 
 class ProductDetailsAppBar extends StatelessWidget {
   const ProductDetailsAppBar({
@@ -16,7 +17,6 @@ class ProductDetailsAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      // automaticallyImplyLeading: false,
       leadingWidth: defaultPadding * 2,
       pinned: true,
       backgroundColor: whiteColor,
@@ -38,17 +38,12 @@ class ProductDetailsAppBar extends StatelessWidget {
                     maxLines: 1)
                 : const SizedBox.shrink(),
             // title: const Text("Amul Chocolate"),
-            background: SafeArea(
-                child: CustomCarouselProductDetails(
-              items: productDetailsController.images
-                  .map((e) => BannerEntity(image: e, onTap: () {}))
-                  .toList(),
-              alignment: Alignment.center,
-              boxFit: BoxFit.cover,
-            )),
+            background: const Trailer(),
           );
         },
       ),
     );
   }
 }
+
+

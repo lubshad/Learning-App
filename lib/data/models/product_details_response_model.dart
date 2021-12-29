@@ -1,12 +1,9 @@
 // To parse this JSON data, do
 //
 //     final productDetailsResponseModel = productDetailsResponseModelFromJson(jsonString);
-// ignore_for_file: must_be_immutable, overridden_fields, annotate_overrides
 
+import 'package:meta/meta.dart';
 import 'dart:convert';
-
-import 'package:learning_app/domain/entities/price_range_entity.dart';
-import 'package:learning_app/domain/entities/product_entity.dart';
 
 ProductDetailsResponseModel productDetailsResponseModelFromJson(String str) =>
     ProductDetailsResponseModel.fromJson(json.decode(str));
@@ -17,229 +14,257 @@ String productDetailsResponseModelToJson(ProductDetailsResponseModel data) =>
 class ProductDetailsResponseModel {
   ProductDetailsResponseModel({
     required this.status,
-    required this.message,
     required this.data,
+    required this.message,
   });
 
-  int status;
-  String message;
-  Data? data;
+  final bool status;
+  final Data data;
+  final String message;
 
   factory ProductDetailsResponseModel.fromJson(Map<String, dynamic> json) =>
       ProductDetailsResponseModel(
         status: json["status"],
-        message: json["message"],
         data: Data.fromJson(json["data"]),
+        message: json["message"],
       );
 
   Map<String, dynamic> toJson() => {
         "status": status,
+        "data": data.toJson(),
         "message": message,
-        "data": data!.toJson(),
       };
 }
 
 class Data {
   Data({
-    required this.productId,
-    required this.productName,
-    required this.productImages,
-    required this.variant1Name,
-    required this.variant1S,
-    required this.productDescription,
-    required this.productFeatures,
-    required this.productDetails,
+    required this.id,
+    required this.title,
+    required this.titleSlug,
+    required this.teaserVideo,
+    required this.totalLessons,
+    required this.totalDuration,
+    required this.shortDescription,
+    required this.offers,
+    required this.createdBy,
+    required this.rating,
+    required this.ratingCount,
+    required this.actualPrice,
+    required this.listingImage,
+    required this.price,
+    required this.description,
+    required this.updatedAt,
+    required this.courseValidity,
+    required this.learningNotes,
+    required this.courseChapter,
+    required this.reviews,
+    required this.percentageStar,
   });
 
-  String productId;
-  String productName;
-  List<ProductImage> productImages;
-  String variant1Name;
-  List<Variant1> variant1S;
-  String productDescription;
-  String productFeatures;
-  String productDetails;
+  final int id;
+  final String title;
+  final String titleSlug;
+  final String teaserVideo;
+  final int totalLessons;
+  final double totalDuration;
+  final String shortDescription;
+  final String offers;
+  final String createdBy;
+  final dynamic rating;
+  final int ratingCount;
+  final String actualPrice;
+  final String listingImage;
+  final String price;
+  final String description;
+  final DateTime updatedAt;
+  final int courseValidity;
+  final List<LearningNote> learningNotes;
+  final List<CourseChapter> courseChapter;
+  final List<dynamic> reviews;
+  final PercentageStar percentageStar;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        productId: json["product_id"],
-        productName: json["product_name"],
-        productImages: List<ProductImage>.from(
-            json["product_images"].map((x) => ProductImage.fromJson(x))),
-        variant1Name: json["variant1_name"],
-        variant1S: List<Variant1>.from(
-            json["variant1s"].map((x) => Variant1.fromJson(x))),
-        productDescription: json["product_description"],
-        productFeatures: json["product_features"],
-        productDetails: json["product_details"],
+        id: json["id"],
+        title: json["title"],
+        titleSlug: json["title_slug"],
+        teaserVideo: json["teaser_video"],
+        totalLessons: json["total_lessons"],
+        totalDuration: json["total_duration"].toDouble(),
+        shortDescription: json["short_description"],
+        offers: json["offers"],
+        createdBy: json["created_by"],
+        rating: json["rating"],
+        ratingCount: json["rating_count"],
+        actualPrice: json["actual_price"],
+        listingImage: json["listing_image"],
+        price: json["price"],
+        description: json["description"],
+        updatedAt: DateTime.parse(json["updated_at"]),
+        courseValidity: json["course_validity"],
+        learningNotes: List<LearningNote>.from(
+            json["learning_notes"].map((x) => LearningNote.fromJson(x))),
+        courseChapter: List<CourseChapter>.from(
+            json["course_chapter"].map((x) => CourseChapter.fromJson(x))),
+        reviews: List<dynamic>.from(json["reviews"].map((x) => x)),
+        percentageStar: PercentageStar.fromJson(json["percentage_star"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "product_id": productId,
-        "product_name": productName,
-        "product_images":
-            List<dynamic>.from(productImages.map((x) => x.toJson())),
-        "variant1_name": variant1Name,
-        "variant1s": List<dynamic>.from(variant1S.map((x) => x.toJson())),
-        "product_description": productDescription,
-        "product_features": productFeatures,
-        "product_details": productDetails,
-      };
-}
-
-class ProductImage {
-  ProductImage({
-    required this.key,
-    required this.image,
-  });
-
-  int key;
-  String image;
-
-  factory ProductImage.fromJson(Map<String, dynamic> json) => ProductImage(
-        key: json["key"],
-        image: json["image"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "key": key,
-        "image": image,
-      };
-}
-
-class Variant1 {
-  Variant1({
-    required this.variant1Name,
-    required this.vendors,
-  });
-
-  String variant1Name;
-  List<Vendor> vendors;
-
-  factory Variant1.fromJson(Map<String, dynamic> json) => Variant1(
-        variant1Name: json["variant1_name"],
-        vendors:
-            List<Vendor>.from(json["vendors"].map((x) => Vendor.fromJson(x))),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "variant1_name": variant1Name,
-        "vendors": List<dynamic>.from(vendors.map((x) => x.toJson())),
-      };
-}
-
-class Vendor extends ProductEntity {
-  Vendor({
-    required this.vendorName,
-    required this.vendorId,
-    required this.productName,
-    required this.vendorLogo,
-    required this.stockId,
-    required this.varientCutPrice,
-    required this.varientPrice,
-    required this.offerPercent,
-    required this.userQty,
-    required this.wishlistStatus,
-    required this.varientQuantity,
-    required this.convenientCharge,
-    required this.expectedDelivery,
-    required this.skuCode,
-    required this.shareLink,
-    required this.rewardPoint,
-    required this.priceRanges,
-  }) : super(
-            stockId: stockId,
-            name: productName,
-            imageUrl: "",
-            price: varientPrice,
-            mrp: varientCutPrice,
-            wishlistStatus: wishlistStatus);
-
-  String vendorName;
-  String vendorId;
-  String productName;
-  String vendorLogo;
-  String stockId;
-  String varientCutPrice;
-  String varientPrice;
-  String offerPercent;
-  String userQty;
-  String wishlistStatus;
-  String varientQuantity;
-  String convenientCharge;
-  String expectedDelivery;
-  String skuCode;
-  String shareLink;
-  String rewardPoint;
-  List<PriceRange> priceRanges;
-
-  factory Vendor.fromJson(Map<String, dynamic> json) => Vendor(
-        vendorName: json["vendor_name"],
-        vendorId: json["vendor_id"],
-        productName: json["product_name"],
-        vendorLogo: json["vendor_logo"],
-        stockId: json["stock_id"],
-        varientCutPrice: json["varient_cut_price"].toString(),
-        varientPrice: json["varient_price"].toString(),
-        offerPercent: json["offer_percent"].toString(),
-        userQty: json["user_qty"],
-        wishlistStatus: json["wishlist_status"],
-        varientQuantity: json["varient_quantity"],
-        convenientCharge: json["convenient_charge"],
-        expectedDelivery: json["expected_delivery"],
-        skuCode: json["sku_code"],
-        shareLink: json["share_link"],
-        rewardPoint: json["reward_point"],
-        priceRanges:
-            // json["price_ranges"]== null
-            //     ? priceRangeSmallList
-            //     :
-            List<PriceRange>.from(
-                json["price_range"].map((x) => PriceRange.fromJson(x))),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "vendor_name": vendorName,
-        "vendor_id": vendorId,
-        "product_name": productName,
-        "vendor_logo": vendorLogo,
-        "stock_id": stockId,
-        "varient_cut_price": varientCutPrice,
-        "varient_price": varientPrice,
-        "offer_percent": offerPercent,
-        "user_qty": userQty,
-        "wishlist_status": wishlistStatus,
-        "varient_quantity": varientQuantity,
-        "convenient_charge": convenientCharge,
-        "expected_delivery": expectedDelivery,
-        "sku_code": skuCode,
-        "share_link": shareLink,
-        "reward_point": rewardPoint,
-      };
-}
-
-class PriceRange extends PriceRangeEntity {
-  PriceRange({
-    required this.range,
-    required this.price,
-  }) : super(range: range, price: price);
-
-  String range;
-  String price;
-
-  factory PriceRange.fromJson(Map<String, dynamic> json) => PriceRange(
-        range: json["range"],
-        price: json["price"].toString(),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "range": range,
+        "id": id,
+        "title": title,
+        "title_slug": titleSlug,
+        "teaser_video": teaserVideo,
+        "total_lessons": totalLessons,
+        "total_duration": totalDuration,
+        "short_description": shortDescription,
+        "offers": offers,
+        "created_by": createdBy,
+        "rating": rating,
+        "rating_count": ratingCount,
+        "actual_price": actualPrice,
+        "listing_image": listingImage,
         "price": price,
+        "description": description,
+        "updated_at": updatedAt.toIso8601String(),
+        "course_validity": courseValidity,
+        "learning_notes":
+            List<dynamic>.from(learningNotes.map((x) => x.toJson())),
+        "course_chapter":
+            List<dynamic>.from(courseChapter.map((x) => x.toJson())),
+        "reviews": List<dynamic>.from(reviews.map((x) => x)),
+        "percentage_star": percentageStar.toJson(),
       };
 }
 
-List<PriceRange> priceRangeSmallList = [
-  PriceRange(range: "1-10", price: "30.00"),
-  PriceRange(range: "10-20", price: "25.00"),
-  PriceRange(range: "20-100", price: "20.00"),
-  PriceRange(range: "100+", price: "18.00"),
-];
+class CourseChapter {
+  CourseChapter({
+    required this.id,
+    required this.chapterTitle,
+    required this.titleSlug,
+    required this.chaptersCount,
+    required this.durationCount,
+    required this.chapters,
+  });
+
+  final int id;
+  final String chapterTitle;
+  final String titleSlug;
+  final int chaptersCount;
+  final double durationCount;
+  final List<Chapter> chapters;
+
+  factory CourseChapter.fromJson(Map<String, dynamic> json) => CourseChapter(
+        id: json["id"],
+        chapterTitle: json["chapter_title"],
+        titleSlug: json["title_slug"],
+        chaptersCount: json["chapters_count"],
+        durationCount: json["duration_count"].toDouble(),
+        chapters: List<Chapter>.from(
+            json["chapters"].map((x) => Chapter.fromJson(x))),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "chapter_title": chapterTitle,
+        "title_slug": titleSlug,
+        "chapters_count": chaptersCount,
+        "duration_count": durationCount,
+        "chapters": List<dynamic>.from(chapters.map((x) => x.toJson())),
+      };
+}
+
+class Chapter {
+  Chapter({
+    required this.id,
+    required this.libraryName,
+    required this.duration,
+    required this.contentVideo,
+    required this.freeVideo,
+  });
+
+  final int id;
+  final String libraryName;
+  final double duration;
+  final String contentVideo;
+  final bool freeVideo;
+
+  factory Chapter.fromJson(Map<String, dynamic> json) => Chapter(
+        id: json["id"],
+        libraryName: json["library_name"],
+        duration: json["duration"].toDouble(),
+        contentVideo: json["content_video"],
+        freeVideo: json["free_video"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "library_name": libraryName,
+        "duration": duration,
+        "content_video": contentVideo,
+        "free_video": freeVideo,
+      };
+}
+
+class LearningNote {
+  LearningNote({
+    required this.id,
+    required this.courseName,
+    required this.text,
+    required this.isActive,
+    required this.course,
+  });
+
+  final int id;
+  final String courseName;
+  final String text;
+  final bool isActive;
+  final int course;
+
+  factory LearningNote.fromJson(Map<String, dynamic> json) => LearningNote(
+        id: json["id"],
+        courseName: json["course_name"],
+        text: json["text"],
+        isActive: json["is_active"],
+        course: json["course"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "course_name": courseName,
+        "text": text,
+        "is_active": isActive,
+        "course": course,
+      };
+}
+
+class PercentageStar {
+  PercentageStar({
+    required this.the1Stars,
+    required this.the2Stars,
+    required this.the3Stars,
+    required this.the4Stars,
+    required this.the5Stars,
+  });
+
+  final String the1Stars;
+  final String the2Stars;
+  final String the3Stars;
+  final String the4Stars;
+  final String the5Stars;
+
+  factory PercentageStar.fromJson(Map<String, dynamic> json) => PercentageStar(
+        the1Stars: json["1stars"],
+        the2Stars: json["2stars"],
+        the3Stars: json["3stars"],
+        the4Stars: json["4stars"],
+        the5Stars: json["5stars"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "1stars": the1Stars,
+        "2stars": the2Stars,
+        "3stars": the3Stars,
+        "4stars": the4Stars,
+        "5stars": the5Stars,
+      };
+}

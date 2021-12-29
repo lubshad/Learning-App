@@ -8,8 +8,6 @@ import 'dart:convert';
 
 import 'package:learning_app/domain/entities/product_entity.dart';
 
-import 'product_details_response_model.dart';
-
 ViewCartResponseModel viewCartResponseModelFromJson(String str) =>
     ViewCartResponseModel.fromJson(json.decode(str));
 
@@ -81,7 +79,7 @@ class Product extends ProductEntity {
     this.quantity,
     this.stockAvailable,
     this.totalAmount,
-    this.priceRange,
+    // this.priceRange,
   }) : super(
             name: productName!,
             imageUrl: productImg!,
@@ -91,7 +89,7 @@ class Product extends ProductEntity {
             cartDetailsId: cartDetailsId,
             vendorId: vendorId,
             total: totalAmount,
-            priceRange: priceRange,
+            // priceRange: priceRange,
             stockAvailable: stockAvailable);
 
   String? productId;
@@ -113,7 +111,7 @@ class Product extends ProductEntity {
   String? stockAvailable;
   String? totalAmount;
   // ignore: annotate_overrides
-  List<PriceRange>? priceRange;
+  // List<PriceRange>? priceRange;
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
         cartDetailsId: json["cart_details_id"],
@@ -128,8 +126,8 @@ class Product extends ProductEntity {
         quantity: json["quantity"].toString(),
         stockAvailable: json["stock_available"],
         totalAmount: json["total_amount"].toString(),
-        priceRange: List<PriceRange>.from(
-            json["price_range"].map((x) => PriceRange.fromJson(x))),
+        // priceRange: List<PriceRange>.from(
+        //     json["price_range"].map((x) => PriceRange.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -146,6 +144,6 @@ class Product extends ProductEntity {
         "quantity": quantity,
         "stock_available": stockAvailable,
         "total_amount": totalAmount,
-        "price_range": List<dynamic>.from(priceRange!.map((x) => x.toJson())),
+        // "price_range": List<dynamic>.from(priceRange!.map((x) => x.toJson())),
       };
 }

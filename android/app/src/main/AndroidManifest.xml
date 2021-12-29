@@ -1,7 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lubshad4u4.learning_app">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="learning_app"
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

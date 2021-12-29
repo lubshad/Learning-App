@@ -34,47 +34,47 @@ class CourseDetailsScreen extends StatelessWidget {
               slivers: [
                 ProductDetailsAppBar(
                     productDetailsController: productDetailsController),
-                ProductDetailsSections(
-                    productDetailsController: productDetailsController),
+                // ProductDetailsSections(
+                //     productDetailsController: productDetailsController),
               ],
             ),
-            bottomNavigationBar: Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: defaultPadding, vertical: defaultPadding * .5),
-              child: Row(
-                children: [
-                  Expanded(
-                      flex: 3,
-                      child: QuantityChangeButtons(
-                        quantityController:
-                            productDetailsController.quantityController,
-                        decreaseQty: productDetailsController.decreaseQuantity,
-                        increaseQty: productDetailsController.increaseQuantity,
-                      )),
-                  defaultSpacerHorizontal,
-                  Expanded(
-                    flex: 3,
-                    child: productDetailsController.isCartProduct
-                        ? DefaultButton(
-                            text: AppLocalizations.of(context)!.go_to_cart,
-                            onPressed: () {
-                              Get.until((route) =>
-                                  Get.currentRoute == RouteList.initial);
-                              Get.find<NavigationScreenController>()
-                                  .changeScreen(Screens.cart.index);
-                            },
-                            isLoading: productDetailsController.buttonLoading,
-                          )
-                        : DefaultButton(
-                            text: AppLocalizations.of(context)!.add_to_cart,
-                            onPressed:
-                                productDetailsController.addProductToCart,
-                            isLoading: productDetailsController.buttonLoading,
-                          ),
-                  ),
-                ],
-              ),
-            ),
+            // bottomNavigationBar: Padding(
+            //   padding: const EdgeInsets.symmetric(
+            //       horizontal: defaultPadding, vertical: defaultPadding * .5),
+            //   child: Row(
+            //     children: [
+            //       Expanded(
+            //           flex: 3,
+            //           child: QuantityChangeButtons(
+            //             quantityController:
+            //                 productDetailsController.quantityController,
+            //             decreaseQty: productDetailsController.decreaseQuantity,
+            //             increaseQty: productDetailsController.increaseQuantity,
+            //           )),
+            //       defaultSpacerHorizontal,
+            //       Expanded(
+            //         flex: 3,
+            //         child: productDetailsController.isCartProduct
+            //             ? DefaultButton(
+            //                 text: AppLocalizations.of(context)!.go_to_cart,
+            //                 onPressed: () {
+            //                   Get.until((route) =>
+            //                       Get.currentRoute == RouteList.initial);
+            //                   Get.find<NavigationScreenController>()
+            //                       .changeScreen(Screens.cart.index);
+            //                 },
+            //                 isLoading: productDetailsController.buttonLoading,
+            //               )
+            //             : DefaultButton(
+            //                 text: AppLocalizations.of(context)!.add_to_cart,
+            //                 onPressed:
+            //                     productDetailsController.addProductToCart,
+            //                 isLoading: productDetailsController.buttonLoading,
+            //               ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
           ),
         );
       },

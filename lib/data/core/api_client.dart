@@ -29,12 +29,15 @@ class ApiClient {
   }
 
   dynamic get(String path, {Map<dynamic, dynamic>? params}) async {
+    consoleLog(getPath(path));
     final response = await _client.get(
       getPath(path),
       headers: {
         'Content-Type': 'application/json',
       },
     );
+
+    consoleLog(response.body);
 
     if (response.statusCode == 200) {
       return json.decode(response.body);

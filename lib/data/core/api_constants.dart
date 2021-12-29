@@ -16,7 +16,7 @@ class ApiConstants {
   static const String login = "login";
   static const String logout = "logout";
   static const String versionCheck = "version";
-  static const String getProductDetails = "get-products";
+  static const String getProductDetails = "course_details/";
   static const String removeFromWishlist = "remove-wishlist-product";
   static const String addToWishlist = "add-to-wishlist";
   static const String searchProducts = "search-products";

@@ -229,18 +229,9 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   @override
   Future<ProductDetailsResponseModel> getProductDetails(
       Map<String, dynamic> params) async {
-    final response =
-        await _apiClient.post(ApiConstants.getProductDetails, params);
-    if (response["status"] == 1) {
-      try {
-        return ProductDetailsResponseModel.fromJson(response);
-      } catch (e) {
-        throw Exception();
-      }
-    } else {
-      return ProductDetailsResponseModel(
-          status: response["status"], message: response["message"], data: null);
-    }
+    final response = await _apiClient
+        .get(ApiConstants.getProductDetails + params["id"], params: params);
+    return ProductDetailsResponseModel.fromJson(response);
   }
 
   @override
