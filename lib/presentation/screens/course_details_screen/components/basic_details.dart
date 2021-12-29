@@ -12,15 +12,13 @@ class BasicDetails extends StatelessWidget {
 
   final CourseDetails courseDetails;
 
-  get defaultPadding => null;
-
   @override
   Widget build(BuildContext context) {
     final document = parse(courseDetails.description);
     final String parsedString =
         parse(document.body!.text).documentElement!.text;
     return Padding(
-      padding: EdgeInsets.all(defaultPadding),
+      padding: const EdgeInsets.all(defaultPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
