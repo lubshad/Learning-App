@@ -1,27 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:learning_app/data/models/product_details_response_model.dart';
+import 'package:learning_app/presentation/screens/course_details_screen/course_details_controller.dart';
 
 import 'basic_details.dart';
+import 'more_details.dart';
 
 class ProductDetailsSections extends StatelessWidget {
   const ProductDetailsSections({
     Key? key,
-    required this.courseDetails,
+    required this.productDetailsController,
   }) : super(key: key);
-
-  final CourseDetails courseDetails;
+  final ProductDetailsController productDetailsController;
 
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
-      child: Column(
-        children: [
-          BasicDetails(courseDetails: courseDetails),
-        ],
-      )
-    );
+        child: Column(
+      children: [
+        BasicDetails(
+            courseDetails:
+                productDetailsController.productDetailsResponseModel!.data),
+        if (productDetailsController.showMore) const MoreDetails()
+      ],
+    ));
   }
 }
+
+
 
 
 

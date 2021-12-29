@@ -30,8 +30,7 @@ class CourseDetailsScreen extends StatelessWidget {
                 if (productDetailsController.productDetailsResponseModel !=
                     null)
                   ProductDetailsSections(
-                      courseDetails: productDetailsController
-                          .productDetailsResponseModel!.data),
+                    productDetailsController: productDetailsController,),
               ],
             ),
             // bottomNavigationBar: Padding(

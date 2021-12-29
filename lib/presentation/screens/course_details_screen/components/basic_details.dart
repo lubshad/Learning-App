@@ -18,6 +18,7 @@ class BasicDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ProductDetailsController productDetailsController = Get.find();
     final document = parse(courseDetails.description);
     final String parsedString =
         parse(document.body!.text).documentElement!.text;
@@ -147,12 +148,13 @@ class BasicDetails extends StatelessWidget {
                   text: courseDetails.courseChapter[index].chapterTitle,
                   details: "",
                   iconData: Icons.verified)),
-          TextButton(
-            child: const Text("Show more"),
-            onPressed: () {
-              Get.find<ProductDetailsController>().showMoreDetails();
-            },
-          ),
+          if (!productDetailsController.showMore)
+            TextButton(
+              child: const Text("Show more"),
+              onPressed: () {
+                Get.find<ProductDetailsController>().showMoreDetails();
+              },
+            ),
         ],
       ),
     );
