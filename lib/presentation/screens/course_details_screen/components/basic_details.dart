@@ -19,7 +19,7 @@ class BasicDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ProductDetailsController productDetailsController = Get.find();
-    final document = parse(courseDetails.description);
+    final document = parse(courseDetails.shortDescription);
     final String parsedString =
         parse(document.body!.text).documentElement!.text;
     return Padding(
@@ -45,7 +45,7 @@ class BasicDetails extends StatelessWidget {
             courseDetails.title,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
-            style: Theme.of(context).textTheme.headline6BoldPrimary(),
+            style: Theme.of(context).textTheme.headline6Primary(),
           ),
           defaultSpacerSmall,
           Text(
@@ -140,7 +140,10 @@ class BasicDetails extends StatelessWidget {
           defaultSpacer,
           DefaultButton(text: "Buy Now", onPressed: () {}, isLoading: false),
           defaultSpacer,
-          const Text("What Will You Learn?"),
+          Text(
+            "What Will You Learn?",
+            style: Theme.of(context).textTheme.headline6,
+          ),
           defaultSpacer,
           ...List.generate(
               courseDetails.courseChapter.length,

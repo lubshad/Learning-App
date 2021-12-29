@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learning_app/data/data_sources/auth_local_data_source.dart';
 import 'package:learning_app/domain/entities/user_entity.dart';
+import 'package:learning_app/presentation/core/auth_wrapper/auth_controller.dart';
+import 'package:learning_app/presentation/screens/auth_screen/auth_screen_controller.dart';
 import 'package:learning_app/presentation/theme/theme.dart';
 import 'package:learning_app/presentation/widgets/default_button.dart';
 
@@ -12,28 +14,53 @@ class AuthScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AuthScreenController authScreenController = Get.find();
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(defaultPadding),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const Spacer(),
             Text(
               "Sign In",
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline4!
+                  .copyWith(color: primaryColor),
             ),
+            defaultSpacer,
             Text(
               "By using out service you are agreeing to our",
               style: Theme.of(context).textTheme.caption,
             ),
+            defaultSpacerSmall,
             Text(
               "Terms and Privacy Statement",
               style: Theme.of(context).textTheme.bodyText1,
             ),
-            DefaultButton(text: "Sign in", onPressed: () {
-              UserEntity userEntity = const UserEntity(name: "Lubshad", sessionId: "123465789", userId: "1", phone: "9744714697", imageUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80");
-              Get.find<AuthenticationLocalDataSource>().saveUser(userEntity);
-            }, isLoading: false),
+            const Spacer(),
+            DefaultButton(
+                text: "Sign in with google",
+                onPressed: authScreenController.loginWithGoogle,
+                isLoading: authScreenController.googleButtonLoading),
+            defaultSpacerSmall,
+            DefaultButton(
+                text: "Sign in with Email", onPressed: () {}, isLoading: false),
+            defaultSpacerSmall,
+            DefaultButton(
+                text: "Sign in with Facebook",
+                onPressed: () {},
+                isLoading: false),
+            const Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text("New here?"),
+                TextButton(onPressed: () {}, child: const Text("Sign Up"))
+              ],
+            ),
+            defaultSpacer,
           ],
         ),
       ),

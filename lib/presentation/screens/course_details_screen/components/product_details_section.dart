@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:learning_app/data/models/product_details_response_model.dart';
 import 'package:learning_app/presentation/screens/course_details_screen/course_details_controller.dart';
 
 import 'basic_details.dart';
@@ -20,7 +19,7 @@ class ProductDetailsSections extends StatelessWidget {
         BasicDetails(
             courseDetails:
                 productDetailsController.productDetailsResponseModel!.data),
-        if (productDetailsController.showMore) const MoreDetails()
+        if (productDetailsController.showMore)  MoreDetails(courseDetails: productDetailsController.productDetailsResponseModel!.data,)
       ],
     ));
   }

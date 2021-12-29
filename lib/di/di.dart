@@ -34,6 +34,7 @@ import 'package:learning_app/domain/usecases/upload_kyc.dart';
 import 'package:learning_app/domain/usecases/verify_otp_login.dart';
 import 'package:learning_app/domain/usecases/version_check.dart';
 import 'package:learning_app/presentation/screens/add_address_screen/add_address_controller.dart';
+import 'package:learning_app/presentation/screens/auth_screen/auth_screen_controller.dart';
 import 'package:learning_app/presentation/screens/cart_screen/cart_screen_controller.dart';
 import 'package:learning_app/presentation/screens/category_details_screen/category_details_controller.dart';
 import 'package:learning_app/presentation/screens/checkout_screen/checkout_controller.dart';
@@ -121,6 +122,7 @@ class DependencyInjection {
     Get.lazyPut(() => PlaceOrder(Get.find()), fenix: true);
     Get.lazyPut(() => GetRegions(Get.find()), fenix: true);
     Get.lazyPut(() => ChangePasswordController(), fenix: true);
+    Get.lazyPut(() => AuthScreenController(), fenix: true);
     Get.lazyPut(() => KycDetailsController(), fenix: true);
     Get.lazyPut(() => LoginScreenController(), fenix: true);
     Get.lazyPut(() => CategoryDetailsController(), fenix: true);

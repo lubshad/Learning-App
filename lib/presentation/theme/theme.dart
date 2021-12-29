@@ -133,6 +133,8 @@ extension ThemeExtension on TextTheme {
       headline6!.copyWith(fontWeight: FontWeight.bold, color: blackColor);
   TextStyle headline6BoldPrimary() =>
       headline6!.copyWith(fontWeight: FontWeight.bold, color: primaryColor);
+    TextStyle headline6Primary() =>
+      headline6!.copyWith( color: primaryColor);
   TextStyle headline5BoldBlack() =>
       headline5!.copyWith(fontWeight: FontWeight.bold, color: blackColor);
   TextStyle bodyText1White() => bodyText1!.copyWith(color: whiteColor);

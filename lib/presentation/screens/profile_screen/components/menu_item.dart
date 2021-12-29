@@ -1,5 +1,7 @@
+import 'package:learning_app/data/data_sources/auth_local_data_source.dart';
 import 'package:learning_app/domain/params/no_params.dart';
 import 'package:learning_app/domain/usecases/logout_user.dart';
+import 'package:learning_app/presentation/core/auth_wrapper/auth_controller.dart';
 import 'package:learning_app/presentation/route/route_constants.dart';
 import 'package:learning_app/presentation/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -21,20 +23,20 @@ class MenuItem extends StatelessWidget {
           children: [
             MenuListItems(
               text: AppLocalizations.of(context)!.my_orders,
-              onTap: () => Get.toNamed(RouteList.myOrders),
+              onTap: () {},
             ),
             MenuListItems(
               text: AppLocalizations.of(context)!.my_address,
-              onTap: () => Get.toNamed(RouteList.myAddressScreen),
+              onTap: () {},
             ),
             MenuListItems(
               text: AppLocalizations.of(context)!.my_wishlist,
-              onTap: () => Get.toNamed(RouteList.wishList),
+              onTap: () {},
             ),
             MenuListItems(
               text: AppLocalizations.of(context)!.logout,
               onTap: () {
-                Get.find<LogoutUser>()(NoParams());
+                Get.find<AuthenticationLocalDataSource>().deleteUser();
               },
               color: primaryColor,
             ),
