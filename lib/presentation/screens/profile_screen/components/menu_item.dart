@@ -1,12 +1,8 @@
-import 'package:learning_app/data/data_sources/auth_local_data_source.dart';
-import 'package:learning_app/domain/params/no_params.dart';
-import 'package:learning_app/domain/usecases/logout_user.dart';
-import 'package:learning_app/presentation/core/auth_wrapper/auth_controller.dart';
-import 'package:learning_app/presentation/route/route_constants.dart';
-import 'package:learning_app/presentation/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
+import 'package:learning_app/data/data_sources/auth_local_data_source.dart';
+import 'package:learning_app/presentation/theme/theme.dart';
 
 import 'menu_list_items.dart';
 

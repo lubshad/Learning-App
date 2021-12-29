@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:learning_app/data/data_sources/auth_local_data_source.dart';
-import 'package:learning_app/domain/entities/user_entity.dart';
-import 'package:learning_app/presentation/core/auth_wrapper/auth_controller.dart';
+import 'package:learning_app/presentation/route/route_constants.dart';
 import 'package:learning_app/presentation/screens/auth_screen/auth_screen_controller.dart';
 import 'package:learning_app/presentation/theme/theme.dart';
 import 'package:learning_app/presentation/widgets/default_button.dart';
@@ -65,7 +63,9 @@ class AuthScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text("New here?"),
-                    TextButton(onPressed: () {}, child: const Text("Sign Up"))
+                    TextButton(onPressed: () {
+                      Get.toNamed(RouteList.register);
+                    }, child: const Text("Sign Up"))
                   ],
                 ),
                 defaultSpacer,

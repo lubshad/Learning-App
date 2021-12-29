@@ -9,7 +9,6 @@ import 'package:learning_app/domain/usecases/remove_cart.dart';
 import 'package:learning_app/domain/usecases/update_cart.dart';
 import 'package:learning_app/presentation/core/navigation_screen/navigation_screen_controller.dart';
 import 'package:learning_app/presentation/core/navigation_screen/screens.dart';
-import 'package:learning_app/presentation/screens/my_address_screen/my_address_controller.dart';
 import 'package:learning_app/utils/snackbar_uils.dart';
 
 class CartScreenController extends ChangeNotifier {
@@ -23,7 +22,7 @@ class CartScreenController extends ChangeNotifier {
   UpdateCart updateCart = Get.find();
   RemoveCart removeCart = Get.find();
 
-  MyAddressController myAddressController = Get.find();
+  // MyAddressController myAddressController = Get.find();
 
   // TextEditingController quantityController = TextEditingController(text: "1");
 

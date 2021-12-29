@@ -10,8 +10,8 @@ abstract class AuthenticationRepository {
       Map<String, dynamic> params);
   Future<Either<AppError, UserEntity>> changePassword(
       Map<String, dynamic> params);
-  Future<Either<AppError, VerifyOtpResponse>> verifyOtpLogin(
-      Map<String, dynamic> params);
+  // Future<Either<AppError, VerifyOtpResponse>> verifyOtpLogin(
+  //     Map<String, dynamic> params);
   Future<Either<AppError, VerifyOtpResponse>> verifyOtpRegistration(
       Map<String, dynamic> params);
   Future<Either<AppError, Map<String, dynamic>>> resendOtp(

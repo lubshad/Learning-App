@@ -41,5 +41,5 @@ class ApiConstants {
   static const String cancelOrder = "cancel-order";
   static const String checkOutCart = "checkout-cart";
   static const String placeOrder = "place-order";
-  static const String googleMapKey = "AIzaSyBwaElc1FtRkvyneAfUd2hG16T29F5bJnA";
+  static const String googleMapKey = "";
 }

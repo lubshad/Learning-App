@@ -63,7 +63,7 @@ class CourseContent extends StatelessWidget {
                   return ListTile(
                     style: ListTileStyle.list,
                     title: Text(chapter.libraryName),
-                    leading: Icon(Icons.play_arrow),
+                    leading: const Icon(Icons.play_arrow),
                     trailing: Text("${chapter.duration} mins"),
                   );
                 })

@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
@@ -20,7 +22,6 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   Future<Either<AppError, Map<String, dynamic>>> login(
       Map<String, dynamic> params) async {
     try {
-      // ignore: unused_local_variable
       final response = await _authenticationRemoteDataSource.login(params);
       return Right(response);
     } on SocketException {
@@ -64,27 +65,27 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     }
   }
 
-  @override
-  Future<Either<AppError, VerifyOtpResponse>> verifyOtpLogin(
-      Map<String, dynamic> params) async {
-    try {
-      final response =
-          await _authenticationRemoteDataSource.verifyOtpLogin(params);
-      UserEntity? user = response.data;
-      // if (user != null &&
-      //     RegistrationStatus.values[user.registrationStatus] ==
-      //         RegistrationStatus.verified) {
-      //   _authenticationLocalDataSource.saveUser(user);
-      // }
-      return Right(response);
-    } on SocketException {
-      return Left(AppError(AppErrorType.network));
-    } on UnauthorizedException {
-      return Left(AppError(AppErrorType.unauthorised));
-    } on Exception {
-      return Left(AppError(AppErrorType.api));
-    }
-  }
+  // @override
+  // Future<Either<AppError, VerifyOtpResponse>> verifyOtpLogin(
+  //     Map<String, dynamic> params) async {
+  //   try {
+  //     final response =
+  //         await _authenticationRemoteDataSource.verifyOtpLogin(params);
+  //     UserEntity? user = response.data;
+  //     // if (user != null &&
+  //     //     RegistrationStatus.values[user.registrationStatus] ==
+  //     //         RegistrationStatus.verified) {
+  //     //   _authenticationLocalDataSource.saveUser(user);
+  //     // }
+  //     return Right(response);
+  //   } on SocketException {
+  //     return Left(AppError(AppErrorType.network));
+  //   } on UnauthorizedException {
+  //     return Left(AppError(AppErrorType.unauthorised));
+  //   } on Exception {
+  //     return Left(AppError(AppErrorType.api));
+  //   }
+  // }
 
   @override
   Future<Either<AppError, Map<String, dynamic>>> resendOtp(

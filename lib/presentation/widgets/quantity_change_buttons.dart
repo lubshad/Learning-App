@@ -29,8 +29,10 @@ class QuantityChangeButtons extends StatelessWidget {
                 FilteringTextInputFormatter.digitsOnly,
                 LengthLimitingTextInputFormatter(4)
               ],
-              decoration:
-                  const InputDecoration(contentPadding: EdgeInsets.zero),
+              decoration: InputDecoration(
+                  contentPadding: EdgeInsets.zero,
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(defaultPadding / 2))),
               controller: quantityController,
               textAlign: TextAlign.center,
               keyboardType: TextInputType.number,

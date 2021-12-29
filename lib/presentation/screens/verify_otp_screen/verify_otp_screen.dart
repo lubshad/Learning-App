@@ -1,13 +1,12 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:learning_app/domain/params/verify_otp_args.dart';
 import 'package:learning_app/l10n/localization.dart';
 import 'package:learning_app/presentation/screens/verify_otp_screen/verify_otp_controller.dart';
 import 'package:learning_app/presentation/theme/theme.dart';
 import 'package:learning_app/presentation/widgets/bold_headline_5.dart';
-import 'package:learning_app/presentation/widgets/default_button.dart';
 import 'package:learning_app/presentation/widgets/text_with_underlined_text_button.dart';
 import 'package:learning_app/utils/formaters.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import 'components/verify_otp_form.dart';
 
@@ -48,10 +47,10 @@ class VerifyOtpScreen extends StatelessWidget {
                   const SizedBox(height: defaultPadding * 3),
                   VerifyOtpForm(verifyOtpController: verifyOtpController),
                   defaultSpacer,
-                  DefaultButton(
-                      text: AppLocalizations.of(context)!.verify_otp,
-                      onPressed: verifyOtpController.verifyOtp,
-                      isLoading: verifyOtpController.buttonLoading),
+                  // DefaultButton(
+                  //     text: AppLocalizations.of(context)!.verify_otp,
+                  //     onPressed: verifyOtpController.verifyOtp,
+                  //     isLoading: verifyOtpController.buttonLoading),
                   defaultSpacer,
                   verifyOtpController.remainingTime > const Duration(seconds: 0)
                       ? Row(

@@ -40,7 +40,7 @@ class MoreDetails extends StatelessWidget {
         ),
         StudentFeedback(courseDetails: courseDetails),
         defaultSpacer,
-        Reviews(),
+        const Reviews(),
       ],
     );
   }

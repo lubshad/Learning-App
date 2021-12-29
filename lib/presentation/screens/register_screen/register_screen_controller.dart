@@ -20,6 +20,9 @@ class RegisterScreenController extends ChangeNotifier {
   final formKey = GlobalKey<FormState>(debugLabel: 'register_form_key');
   final nameController = TextEditingController();
   final phoneController = TextEditingController();
+  final emailController  = TextEditingController();
+  final countryController = TextEditingController();
+  final passwordController = TextEditingController();
 
   GetRegions getRegions = Get.find();
 

@@ -123,9 +123,10 @@ ThemeData themeData(context) {
         shadowColor: Colors.black38,
       ),
       scaffoldBackgroundColor: bgLightBlue,
-      inputDecorationTheme: InputDecorationTheme(
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(defaultPadding / 2))));
+      // inputDecorationTheme: InputDecorationTheme(
+      //     border: OutlineInputBorder(
+      //         borderRadius: BorderRadius.circular(defaultPadding / 2)))
+              );
 }
 
 extension ThemeExtension on TextTheme {
