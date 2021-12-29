@@ -28,19 +28,29 @@ class ProfileHead extends StatelessWidget {
           ),
         ),
         defaultSpacerHorizontal,
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              userEntity.name,
-              style: Theme.of(context).textTheme.headline6,
-            ),
-            defaultSpacerSmall,
-            Text(
-              userEntity.phone,
-              style: Theme.of(context).textTheme.bodyText2,
-            ),
-          ],
+        Flexible(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Flexible(
+                    child: Text(
+                      userEntity.name,
+                      style: Theme.of(context).textTheme.headline6,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
+              defaultSpacerSmall,
+              Text(
+                userEntity.phone,
+                style: Theme.of(context).textTheme.bodyText2,
+              ),
+            ],
+          ),
         )
       ],
     );

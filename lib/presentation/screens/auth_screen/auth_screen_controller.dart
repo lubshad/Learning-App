@@ -38,4 +38,15 @@ class AuthScreenController extends ChangeNotifier {
       makeGoogleButtonNotLoading();
     }
   }
+
+  void login() {
+    UserEntity userEntity = const UserEntity(
+            name: "Lubshad",
+            sessionId: "authId",
+            userId: "authId",
+            phone: "9744714697",
+            imageUrl:
+                "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80");
+        Get.find<AuthenticationLocalDataSource>().saveUser(userEntity);
+  }
 }

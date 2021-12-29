@@ -18,7 +18,7 @@ const sliverSpacer = SliverToBoxAdapter(
 //const colours
 const bgLightBlue = Color(0xFFF2F6F9);
 const whiteColor = Colors.white;
-const primaryColor = Colors.blue;
+const primaryColor = Color(0xFF047bd5);
 const blackColor = Colors.black;
 const errorColor = Color(0xFFB71C1C);
 const goldColor = Color(0xFFd4af37);
@@ -133,13 +133,12 @@ extension ThemeExtension on TextTheme {
       headline6!.copyWith(fontWeight: FontWeight.bold, color: blackColor);
   TextStyle headline6BoldPrimary() =>
       headline6!.copyWith(fontWeight: FontWeight.bold, color: primaryColor);
-    TextStyle headline6Primary() =>
-      headline6!.copyWith( color: primaryColor);
+  TextStyle headline6Primary() => headline6!.copyWith(color: primaryColor);
   TextStyle headline5BoldBlack() =>
       headline5!.copyWith(fontWeight: FontWeight.bold, color: blackColor);
   TextStyle bodyText1White() => bodyText1!.copyWith(color: whiteColor);
   TextStyle bodyText1BoldGrey() =>
-      bodyText1!.copyWith(color: greyColor, fontWeight: FontWeight.bold );
+      bodyText1!.copyWith(color: greyColor, fontWeight: FontWeight.bold);
   TextStyle bodyText1BlueBold() =>
       bodyText1!.copyWith(color: blueColor, fontWeight: FontWeight.bold);
   TextStyle bodyText1BoldRed() =>
