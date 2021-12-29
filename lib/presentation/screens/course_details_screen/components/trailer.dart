@@ -5,8 +5,10 @@ import 'package:video_player/video_player.dart';
 
 class Trailer extends StatefulWidget {
   const Trailer({
-    Key? key,
+    Key? key, required this.trailerUrl,
   }) : super(key: key);
+
+  final String trailerUrl;
 
   @override
   State<Trailer> createState() => _TrailerState();
@@ -18,11 +20,8 @@ class _TrailerState extends State<Trailer> {
   @override
   initState() {
     super.initState();
-    final trailerUrl = ApiConstants.defaultWebUrl +
-        "/media/TeaserVideo/videoplayback_ooWI3Cj.mp4";
-    consoleLog(trailerUrl);
     _controller = VideoPlayerController.network(
-      trailerUrl,
+      widget.trailerUrl,
       videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true),
     );
     _controller.addListener(() {
@@ -40,18 +39,15 @@ class _TrailerState extends State<Trailer> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // padding: const EdgeInsets.all(20),
-      child: AspectRatio(
-        aspectRatio: _controller.value.aspectRatio,
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: <Widget>[
-            VideoPlayer(_controller),
-            _ControlsOverlay(controller: _controller),
-            VideoProgressIndicator(_controller, allowScrubbing: true),
-          ],
-        ),
+    return AspectRatio(
+      aspectRatio: _controller.value.aspectRatio,
+      child: Stack(
+        alignment: Alignment.bottomCenter,
+        children: <Widget>[
+          VideoPlayer(_controller),
+          _ControlsOverlay(controller: _controller),
+          VideoProgressIndicator(_controller, allowScrubbing: true),
+        ],
       ),
     );
   }

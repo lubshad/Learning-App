@@ -1,3 +1,4 @@
+import 'package:learning_app/data/core/api_constants.dart';
 import 'package:learning_app/domain/entities/banner_entity.dart';
 import 'package:learning_app/presentation/theme/theme.dart';
 import 'package:learning_app/presentation/widgets/custom_slider_product_details.dart';
@@ -17,11 +18,11 @@ class ProductDetailsAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      leadingWidth: defaultPadding * 2,
+      // leadingWidth: defaultPadding * 2,
       pinned: true,
       backgroundColor: whiteColor,
       elevation: defaultPadding * .25,
-      expandedHeight: MediaQuery.of(context).size.height * .4,
+      expandedHeight: MediaQuery.of(context).size.width * .5,
       flexibleSpace: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           double height = constraints.biggest.height;
@@ -32,18 +33,19 @@ class ProductDetailsAppBar extends StatelessWidget {
             title: collapsed
                 ? Text(
                     productDetailsController
-                        .selectedVariant.productEntity.name!,
+                        .productDetailsResponseModel!.data.title,
                     style: const TextStyle(color: blackColor),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1)
                 : const SizedBox.shrink(),
-            // title: const Text("Amul Chocolate"),
-            background: const Trailer(),
+            background: Trailer(
+              trailerUrl: ApiConstants.defaultWebUrl +
+                  productDetailsController
+                      .productDetailsResponseModel!.data.teaserVideo,
+            ),
           );
         },
       ),
     );
   }
 }
-
-

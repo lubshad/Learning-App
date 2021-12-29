@@ -22,6 +22,8 @@ class ProductDetailsController extends ChangeNotifier {
   late VariantEntity variantEntity;
   TextEditingController quantityController = TextEditingController(text: "1");
 
+  ProductDetailsResponseModel? productDetailsResponseModel;
+
   Course course = Get.arguments;
   GetProductDetails getProductDetails = Get.find();
 
@@ -109,6 +111,7 @@ class ProductDetailsController extends ChangeNotifier {
   }
 
   void setData(ProductDetailsResponseModel r) {
+    productDetailsResponseModel = r;
     // String variantName = r.data!.variant1Name;
     // List<VariantProduct> variantProducts = r.data!.variant1S
     //     .map((e) => VariantProduct(

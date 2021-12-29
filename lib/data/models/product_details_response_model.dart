@@ -19,13 +19,13 @@ class ProductDetailsResponseModel {
   });
 
   final bool status;
-  final Data data;
+  final CourseDetails data;
   final String message;
 
   factory ProductDetailsResponseModel.fromJson(Map<String, dynamic> json) =>
       ProductDetailsResponseModel(
         status: json["status"],
-        data: Data.fromJson(json["data"]),
+        data: CourseDetails.fromJson(json["data"]),
         message: json["message"],
       );
 
@@ -36,8 +36,8 @@ class ProductDetailsResponseModel {
       };
 }
 
-class Data {
-  Data({
+class CourseDetails {
+  CourseDetails({
     required this.id,
     required this.title,
     required this.titleSlug,
@@ -83,7 +83,7 @@ class Data {
   final List<dynamic> reviews;
   final PercentageStar percentageStar;
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
+  factory CourseDetails.fromJson(Map<String, dynamic> json) => CourseDetails(
         id: json["id"],
         title: json["title"],
         titleSlug: json["title_slug"],

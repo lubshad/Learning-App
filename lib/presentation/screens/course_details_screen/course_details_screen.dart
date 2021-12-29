@@ -34,8 +34,11 @@ class CourseDetailsScreen extends StatelessWidget {
               slivers: [
                 ProductDetailsAppBar(
                     productDetailsController: productDetailsController),
-                // ProductDetailsSections(
-                //     productDetailsController: productDetailsController),
+                if (productDetailsController.productDetailsResponseModel !=
+                    null)
+                  ProductDetailsSections(
+                      courseDetails: productDetailsController
+                          .productDetailsResponseModel!.data),
               ],
             ),
             // bottomNavigationBar: Padding(
