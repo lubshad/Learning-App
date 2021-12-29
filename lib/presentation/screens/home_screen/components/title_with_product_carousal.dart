@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:learning_app/domain/entities/product_entity.dart';
 import 'package:learning_app/presentation/theme/theme.dart';
 import 'package:learning_app/presentation/widgets/header_with_padding.dart';
-import 'package:learning_app/presentation/widgets/cource_card.dart';
+import 'package:learning_app/presentation/widgets/course_card.dart';
 
 class TitleWithCourseCarousal extends StatelessWidget {
   const TitleWithCourseCarousal({
@@ -26,7 +26,7 @@ class TitleWithCourseCarousal extends StatelessWidget {
               ...List.generate(
                 titleWithCoursesEntity.cources.length,
                 (index) => CourseCard(
-                  cource: titleWithCoursesEntity.cources[index],
+                  course: titleWithCoursesEntity.cources[index],
                 ),
               ),
             ],

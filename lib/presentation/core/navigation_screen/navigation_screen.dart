@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:learning_app/presentation/core/navigation_screen/screens.dart';
+import 'package:learning_app/presentation/screens/cart_screen/cart_screen_controller.dart';
+import 'package:learning_app/presentation/theme/theme.dart';
 import 'package:learning_app/presentation/widgets/default_page_transition.dart';
 
 import 'navigation_screen_controller.dart';
@@ -14,7 +17,8 @@ class NavigationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     NavigationScreenController navigationScreenController = Get.find();
-    navigationScreenController.changeScreen(Screens.home.index);
+    navigationScreenController.changeScreen(Screens.cart.index);
+    CartScreenController cartScreenController = Get.find();
     return AnimatedBuilder(
       animation: navigationScreenController,
       builder: (BuildContext context, Widget? child) {
@@ -63,7 +67,35 @@ class NavigationScreen extends StatelessWidget {
                 label: AppLocalizations.of(context)!.exam,
               ),
               BottomNavigationBarItem(
-                icon: const Icon(Icons.shopping_cart_outlined),
+                icon: Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    const Icon(Icons.shopping_cart_outlined),
+                    if (cartScreenController.courseList.isNotEmpty)
+                      AnimatedBuilder(
+                        animation: cartScreenController,
+                        builder: (BuildContext context, Widget? child) {
+                          return Positioned(
+                            top: -10,
+                            right: -10,
+                            child: Container(
+                                alignment: Alignment.center,
+                                width: defaultPadding,
+                                decoration: const BoxDecoration(
+                                    color: Colors.red, shape: BoxShape.circle),
+                                child: Text(
+                                  cartScreenController.courseList.length
+                                      .toString(),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .caption!
+                                      .copyWith(color: whiteColor),
+                                )),
+                          );
+                        },
+                      ),
+                  ],
+                ),
                 // icon: SvgPicture.asset(
                 //   'assets/svgs/ic_cart.svg',
                 //   width: defaultPadding,

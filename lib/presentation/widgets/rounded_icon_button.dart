@@ -18,10 +18,15 @@ class RoundedIconButton extends StatelessWidget {
         width: 32,
         alignment: Alignment.center,
         decoration: const BoxDecoration(
-            color: whiteColor,
+            color: primaryColor,
             shape: BoxShape.circle,
             boxShadow: defaultShadow),
         child: IconButton(
-            padding: EdgeInsets.zero, icon: Icon(icon), onPressed: onPressed));
+            padding: EdgeInsets.zero,
+            icon: Icon(
+              icon,
+              color: whiteColor,
+            ),
+            onPressed: onPressed));
   }
 }

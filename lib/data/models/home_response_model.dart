@@ -121,6 +121,7 @@ class Course {
     required this.currencyCode,
     required this.rating,
     required this.ratingCount,
+    this.cartCount = 1,
   });
 
   final int id;
@@ -133,6 +134,7 @@ class Course {
   final String currencyCode;
   final dynamic rating;
   final int ratingCount;
+  int cartCount;
 
   factory Course.fromJson(Map<String, dynamic> json) => Course(
         id: json["id"],

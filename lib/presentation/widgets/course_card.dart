@@ -5,17 +5,19 @@ import 'package:html/parser.dart' show parse;
 import 'package:learning_app/data/core/api_constants.dart';
 import 'package:learning_app/data/models/home_response_model.dart';
 import 'package:learning_app/presentation/route/route_constants.dart';
+import 'package:learning_app/presentation/screens/cart_screen/cart_screen_controller.dart';
 import 'package:learning_app/presentation/theme/theme.dart';
 import 'package:learning_app/presentation/widgets/default_button.dart';
+import 'package:learning_app/utils/snackbar_uils.dart';
 
 class CourseCard extends StatelessWidget {
-  const CourseCard({Key? key, required this.cource}) : super(key: key);
+  const CourseCard({Key? key, required this.course}) : super(key: key);
 
-  final Course cource;
+  final Course course;
 
   @override
   Widget build(BuildContext context) {
-    final document = parse(cource.description);
+    final document = parse(course.description);
     final String parsedString =
         parse(document.body!.text).documentElement!.text;
     return SizedBox(
@@ -27,7 +29,7 @@ class CourseCard extends StatelessWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(defaultPadding * .5),
           onTap: () {
-            Get.toNamed(RouteList.courseDetailsScreen, arguments: cource);
+            Get.toNamed(RouteList.courseDetailsScreen, arguments: course);
           },
           child: Column(
             children: [
@@ -40,7 +42,7 @@ class CourseCard extends StatelessWidget {
                   child: CachedNetworkImage(
                     width: double.infinity,
                     fit: BoxFit.cover,
-                    imageUrl: ApiConstants.defaultWebUrl + cource.listingImage,
+                    imageUrl: ApiConstants.defaultWebUrl + course.listingImage,
                     errorWidget: (context, url, error) => Image.asset(
                       "assets/no_image.png",
                     ),
@@ -55,7 +57,7 @@ class CourseCard extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Text(cource.ratingCount.toString(),
+                        Text(course.ratingCount.toString(),
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyText1!
@@ -64,17 +66,17 @@ class CourseCard extends StatelessWidget {
                         ...List.generate(
                             5,
                             (index) => RatingIcon(
-                                rating: cource.ratingCount.toDouble(),
+                                rating: course.ratingCount.toDouble(),
                                 index: index.toDouble())),
                         defaultSpacerHorizontalSmall,
-                        Text(cource.rating == null
+                        Text(course.rating == null
                             ? "(43,200)"
-                            : cource.rating.toString()),
+                            : course.rating.toString()),
                       ],
                     ),
                     defaultSpacerSmall,
                     Text(
-                      cource.title,
+                      course.title,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context)
@@ -93,14 +95,17 @@ class CourseCard extends StatelessWidget {
                       height: defaultPadding,
                     ),
                     Text(
-                      cource.currencyCode + " " + cource.price.toString(),
+                      course.currencyCode + " " + course.price.toString(),
                       style: Theme.of(context).textTheme.bodyText1BlueBold(),
                     ),
                     defaultSpacerSmall,
                     DefaultButton(
                         height: defaultPadding * 2,
                         text: "Buy Now",
-                        onPressed: () {},
+                        onPressed: () {
+                          CartScreenController cartScreenController = Get.find();
+                          cartScreenController.addToCart(course);
+                        },
                         isLoading: false)
                   ],
                 ),

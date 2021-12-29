@@ -15,17 +15,19 @@ class CartItemList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
         height: double.infinity,
-        child: cartScreenController.cartProductsList.isEmpty
+        child: cartScreenController.courseList.isEmpty
             ? Center(child: Text(AppLocalizations.of(context)!.cart_empty))
-            : AnimatedList(
-                key: cartScreenController.cartListKey,
-                itemBuilder: (context, index, animation) {
-                  return CartItemCard(
-                    index: index,
-                    animation: animation,
-                  );
-                },
-                initialItemCount: cartScreenController.cartProductsList.length,
+            : SingleChildScrollView(
+                child: Column(
+                  children: [
+                    ...List.generate(
+                      cartScreenController.courseList.length,
+                      (index) => CartItemCard(
+                        course: cartScreenController.courseList[index],
+                      ),
+                    ),
+                  ],
+                ),
               ));
   }
 }

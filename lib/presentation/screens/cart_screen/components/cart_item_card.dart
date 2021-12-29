@@ -1,103 +1,186 @@
-import 'package:learning_app/l10n/localization.dart';
-import 'package:learning_app/presentation/route/route_constants.dart';
-import 'package:learning_app/presentation/screens/cart_screen/cart_screen_controller.dart';
-import 'package:learning_app/presentation/screens/cart_screen/components/update_cart_bottomsheet.dart';
-import 'package:learning_app/presentation/theme/theme.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:html/parser.dart' show parse;
+import 'package:learning_app/data/core/api_constants.dart';
+import 'package:learning_app/data/models/home_response_model.dart';
+import 'package:learning_app/presentation/route/route_constants.dart';
+import 'package:learning_app/presentation/screens/cart_screen/cart_screen_controller.dart';
+import 'package:learning_app/presentation/theme/theme.dart';
+import 'package:learning_app/presentation/widgets/quantity_change_buttons.dart';
 
 class CartItemCard extends StatelessWidget {
-  const CartItemCard({Key? key, required this.index, required this.animation})
-      : super(key: key);
+  const CartItemCard({Key? key, required this.course}) : super(key: key);
 
-  final int index;
-  final Animation<double> animation;
+  final Course course;
 
   @override
   Widget build(BuildContext context) {
     CartScreenController cartScreenController = Get.find();
-    return FadeTransition(
-      opacity: animation,
+    final document = parse(course.description);
+    final String parsedString =
+        parse(document.body!.text).documentElement!.text;
+    return SizedBox(
+      height: 400,
+      width: double.infinity,
       child: Card(
-        margin: const EdgeInsets.symmetric(
-            vertical: defaultPadding * .25, horizontal: defaultPadding * .5),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: defaultPadding * .5),
-          child: ListTile(
-            onTap: () => Get.toNamed(RouteList.productDetailsScreen,
-                arguments: cartScreenController.cartProductsList[index]),
-            leading: CachedNetworkImage(
-              imageUrl: cartScreenController.cartProductsList[index].imageUrl!,
-              width: defaultPadding * 3,
-              height: defaultPadding * 3,
-              errorWidget: (context, url, error) => Image.asset(
-                "assets/no_image.png",
+        // color: Colors.transparent,
+        // elevation: 1,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(defaultPadding * .5),
+          onTap: () {
+            Get.toNamed(RouteList.courseDetailsScreen, arguments: course);
+          },
+          child: Column(
+            children: [
+              Expanded(
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(defaultPadding * .5),
+                    topRight: Radius.circular(defaultPadding * .5),
+                  ),
+                  child: CachedNetworkImage(
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                    imageUrl: ApiConstants.defaultWebUrl + course.listingImage,
+                    errorWidget: (context, url, error) => Image.asset(
+                      "assets/no_image.png",
+                    ),
+                  ),
+                ),
               ),
-            ),
-            title: Text(
-              cartScreenController.cartProductsList[index].name!,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-            subtitle:
-                cartScreenController.cartProductsList[index].stockAvailable ==
-                        ""
-                    ? Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          TextButton.icon(
-                              style: ButtonStyle(
-                                  padding: MaterialStateProperty.all(
-                                      const EdgeInsets.symmetric(
-                                          horizontal: 0,
-                                          vertical: defaultPadding * .5))),
-                              onPressed: () {
-                                showModalBottomSheet(
-                                    shape: const RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.only(
-                                      topLeft:
-                                          Radius.circular(defaultPadding * 1.5),
-                                      topRight:
-                                          Radius.circular(defaultPadding * 1.5),
-                                    )),
-                                    backgroundColor: whiteColor,
-                                    context: context,
-                                    builder: (BuildContext context) =>
-                                        UpdateCartBottomSheet(
-                                          position: index,
-                                        ));
-                              },
-                              icon: Text(
-                                  "${cartScreenController.cartProductsList[index].qty} X ${cartScreenController.cartProductsList[index].price}"),
-                              label: const Icon(Icons.arrow_drop_down)),
-                          Text(
-                            cartScreenController.cartProductsList[index].total!
-                                    .toString() +
-                                " " +
-                                AppLocalizations.of(context)!.currency,
-                            style: Theme.of(context).textTheme.subtitle2,
+              Padding(
+                padding: const EdgeInsets.all(defaultPadding * .5),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.end,
+                    //   children: [
+                    //     Text(course.ratingCount.toString(),
+                    //         style: Theme.of(context)
+                    //             .textTheme
+                    //             .bodyText1!
+                    //             .copyWith(color: goldColor)),
+                    //     defaultSpacerHorizontalSmall,
+                    //     ...List.generate(
+                    //         5,
+                    //         (index) => RatingIcon(
+                    //             rating: course.ratingCount.toDouble(),
+                    //             index: index.toDouble())),
+                    //     defaultSpacerHorizontalSmall,
+                    //     Text(course.rating == null
+                    //         ? "(43,200)"
+                    //         : course.rating.toString()),
+                    //   ],
+                    // ),
+                    defaultSpacerSmall,
+                    Text(
+                      course.title,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText1!
+                          .copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    defaultSpacerSmall,
+                    Text(
+                      parsedString,
+                      style: Theme.of(context).textTheme.caption,
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const Divider(
+                      height: defaultPadding,
+                    ),
+
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: 150,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("Quantity : "),
+                              defaultSpacerSmall,
+                              QuantityChangeButtons(
+                                  increaseQty: () => cartScreenController
+                                      .increaseQuantity(course),
+                                  decreaseQty: () => cartScreenController
+                                      .decreaseQuantity(course),
+                                  quantityController: TextEditingController(
+                                      text: course.cartCount.toString())),
+                            ],
                           ),
-                        ],
-                      )
-                    : Text(
-                        cartScreenController
-                            .cartProductsList[index].stockAvailable!,
-                        style: Theme.of(context)
-                            .textTheme
-                            .subtitle2!
-                            .copyWith(color: errorColor),
-                      ),
-            trailing: IconButton(
-                alignment: Alignment.topRight,
-                onPressed: () => cartScreenController.removeItem(index),
-                icon: const Icon(
-                  Icons.cancel_outlined,
-                  color: primaryColor,
-                )),
+                        ),
+                        const Spacer(),
+                        Flexible(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("Price : "),
+                              defaultSpacerSmall,
+                              Text(
+                                course.currencyCode + " " + course.price,
+                              ),
+                              defaultSpacerSmall,
+                              const Text("Total : "),
+                              defaultSpacerSmall,
+                              Text(
+                                course.currencyCode +
+                                    " " +
+                                    (double.parse(course.price) *
+                                            course.cartCount)
+                                        .toString(),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1BlueBold(),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    )
+                    // Text(
+                    //   course.currencyCode + " " + course.price.toString(),
+                    //   style: Theme.of(context).textTheme.bodyText1BlueBold(),
+                    // ),
+                    // defaultSpacerSmall,
+                    // DefaultButton(
+                    //     height: defaultPadding * 2,
+                    //     text: "Buy Now",
+                    //     onPressed: () {},
+                    //     isLoading: false)
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       ),
     );
+  }
+}
+
+class RatingIcon extends StatelessWidget {
+  const RatingIcon({
+    Key? key,
+    required this.rating,
+    required this.index,
+  }) : super(key: key);
+
+  final double rating;
+  final double index;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+        onTap: () {},
+        child: Icon(
+          Icons.star,
+          color: rating > index ? goldColor : Colors.grey,
+          size: defaultPadding * .8,
+        ));
   }
 }

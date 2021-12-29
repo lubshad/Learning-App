@@ -36,7 +36,7 @@ class CartScreen extends StatelessWidget {
             body: CartItemList(
               cartScreenController: cartScreenController,
             ),
-            bottomNavigationBar: cartScreenController.cartProductsList.isEmpty
+            bottomNavigationBar: cartScreenController.courseList.isEmpty
                 ? const SizedBox.shrink()
                 : CartBottom(
                     billDetailsEntity: cartScreenController.billDetailsEntity!,
