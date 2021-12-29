@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:learning_app/presentation/core/navigation_screen/screens.dart';
 import 'package:learning_app/presentation/screens/cart_screen/cart_screen_controller.dart';

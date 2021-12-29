@@ -1,8 +1,6 @@
-import 'package:learning_app/data/core/api_constants.dart';
-import 'package:learning_app/domain/entities/banner_entity.dart';
-import 'package:learning_app/presentation/theme/theme.dart';
-import 'package:learning_app/presentation/widgets/custom_slider_product_details.dart';
 import 'package:flutter/material.dart';
+import 'package:learning_app/data/core/api_constants.dart';
+import 'package:learning_app/presentation/theme/theme.dart';
 
 import '../course_details_controller.dart';
 import 'trailer.dart';
@@ -18,7 +16,7 @@ class ProductDetailsAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      // leadingWidth: defaultPadding * 2,
+      leadingWidth: defaultPadding * 2,
       pinned: true,
       backgroundColor: whiteColor,
       elevation: defaultPadding * .25,

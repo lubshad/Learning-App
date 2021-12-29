@@ -8,7 +8,6 @@ import 'package:learning_app/presentation/route/route_constants.dart';
 import 'package:learning_app/presentation/screens/cart_screen/cart_screen_controller.dart';
 import 'package:learning_app/presentation/theme/theme.dart';
 import 'package:learning_app/presentation/widgets/default_button.dart';
-import 'package:learning_app/utils/snackbar_uils.dart';
 
 class CourseCard extends StatelessWidget {
   const CourseCard({Key? key, required this.course}) : super(key: key);

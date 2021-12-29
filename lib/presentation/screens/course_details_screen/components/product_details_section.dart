@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:html/parser.dart';
 import 'package:learning_app/data/models/product_details_response_model.dart';
-import 'package:learning_app/l10n/localization.dart';
-import 'package:learning_app/presentation/screens/cart_screen/components/cart_item_card.dart';
-import 'package:learning_app/presentation/screens/course_details_screen/components/price_ranges.dart';
-import 'package:learning_app/presentation/screens/course_details_screen/components/variant_selection.dart';
-import 'package:learning_app/presentation/theme/theme.dart';
 
-import '../course_details_controller.dart';
 import 'basic_details.dart';
 
 class ProductDetailsSections extends StatelessWidget {

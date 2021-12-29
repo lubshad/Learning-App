@@ -47,7 +47,7 @@ class CartScreenController extends ChangeNotifier {
 
   makeNotLoading() {
     isLoading = false;
-    notifyListeners();
+    // notifyListeners();
   }
 
   getData() async {

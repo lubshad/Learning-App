@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:learning_app/data/core/api_constants.dart';
-import 'package:learning_app/utils/debug_utils.dart';
 import 'package:video_player/video_player.dart';
 
 class Trailer extends StatefulWidget {

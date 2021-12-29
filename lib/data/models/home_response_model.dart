@@ -73,7 +73,7 @@ class Banner extends BannerEntity {
 }
 
 class HorizontalSlider extends TitleWithCoursesEntity {
-  HorizontalSlider({
+  const HorizontalSlider({
     required this.heading,
     required this.nameSlug,
     required this.typeImage,

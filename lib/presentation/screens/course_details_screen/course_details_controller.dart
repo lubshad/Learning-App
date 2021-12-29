@@ -100,7 +100,7 @@ class ProductDetailsController extends ChangeNotifier {
 
   getData() async {
     appError = null;
-    makeLoading();
+    // makeLoading();
     ProductDetailsParams productDetailsParams =
         ProductDetailsParams(courseId: course.id.toString());
     final response = await getProductDetails(productDetailsParams);
@@ -179,6 +179,12 @@ class ProductDetailsController extends ChangeNotifier {
       newQty = 1;
     }
     quantityController.text = newQty.toString();
+  }
+
+  bool showMore = false;
+  void showMoreDetails() {
+    showMore = true;
+    notifyListeners();
   }
 }
 

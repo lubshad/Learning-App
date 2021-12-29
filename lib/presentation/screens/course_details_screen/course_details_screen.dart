@@ -1,13 +1,6 @@
-import 'package:learning_app/l10n/localization.dart';
-import 'package:learning_app/presentation/core/navigation_screen/navigation_screen_controller.dart';
-import 'package:learning_app/presentation/core/navigation_screen/screens.dart';
-import 'package:learning_app/presentation/route/route_constants.dart';
-import 'package:learning_app/presentation/theme/theme.dart';
-import 'package:learning_app/presentation/widgets/default_button.dart';
-import 'package:learning_app/presentation/widgets/network_resource.dart';
-import 'package:learning_app/presentation/widgets/quantity_change_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:learning_app/presentation/widgets/network_resource.dart';
 
 import 'components/product_details_appbar.dart';
 import 'components/product_details_section.dart';
