@@ -67,35 +67,33 @@ class NavigationScreen extends StatelessWidget {
                 label: AppLocalizations.of(context)!.exam,
               ),
               BottomNavigationBarItem(
-                icon: Stack(
-                  clipBehavior: Clip.none,
-                  children: [
-                    const Icon(Icons.shopping_cart_outlined),
-                    if (cartScreenController.courseList.isNotEmpty)
-                      AnimatedBuilder(
-                        animation: cartScreenController,
-                        builder: (BuildContext context, Widget? child) {
-                          return Positioned(
-                            top: -10,
-                            right: -10,
-                            child: Container(
-                                alignment: Alignment.center,
-                                width: defaultPadding,
-                                decoration: const BoxDecoration(
-                                    color: Colors.red, shape: BoxShape.circle),
-                                child: Text(
-                                  cartScreenController.courseList.length
-                                      .toString(),
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .caption!
-                                      .copyWith(color: whiteColor),
-                                )),
-                          );
-                        },
-                      ),
-                  ],
+                icon: AnimatedBuilder(
+                  animation: cartScreenController,
+                  builder: (BuildContext context, Widget? child) {
+                    return Stack(clipBehavior: Clip.none, children: [
+                      const Icon(Icons.shopping_cart_outlined),
+                      if (cartScreenController.courseList.isNotEmpty)
+                        Positioned(
+                          top: -10,
+                          right: -10,
+                          child: Container(
+                              alignment: Alignment.center,
+                              width: defaultPadding,
+                              decoration: const BoxDecoration(
+                                  color: Colors.red, shape: BoxShape.circle),
+                              child: Text(
+                                cartScreenController.courseList.length
+                                    .toString(),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .caption!
+                                    .copyWith(color: whiteColor),
+                              )),
+                        ),
+                    ]);
+                  },
                 ),
+
                 // icon: SvgPicture.asset(
                 //   'assets/svgs/ic_cart.svg',
                 //   width: defaultPadding,
